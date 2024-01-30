@@ -1,5 +1,6 @@
 package mainApp;
 
+import javax.swing.JFrame;
 
 /**
  * Class: MainApp
@@ -11,9 +12,8 @@ public class MainApp {
 	
 	
 	private void runApp() {
-
-		System.out.println("Write your cool arcade game here!");	
-		System.out.println("Testing");
+		JFrame frame = new JFrame("Jetpack Joyride");
+		frame.setSize(500, 500);
 
 	} // runApp
 

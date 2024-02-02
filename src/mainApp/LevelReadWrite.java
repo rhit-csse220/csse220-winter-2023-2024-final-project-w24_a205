@@ -12,12 +12,15 @@ public class LevelReadWrite {
 	
 	
 	
-	public void test(String filename)throws FileNotFoundException, IOException  {
+	public void test(String filename)throws FileNotFoundException, IOException, InvalidLevelFormatException  {
 		FileReader f1 = new FileReader(filename);
 		Scanner s1 = new Scanner(f1);
 		
 		while(s1.hasNext()) {
 			String name = s1.next();
+			if (name.length()>3) {
+				throw new InvalidLevelFormatException(name.length(),3);
+			}
 			try {
 				String testString = s1.nextLine();
 				
@@ -36,7 +39,7 @@ public class LevelReadWrite {
 		
 	
 	
-	private void runApp()  {
+	private void runApp() throws InvalidLevelFormatException  {
 		Scanner s = new Scanner(System.in);
 		
 		boolean isDone = false;
@@ -60,7 +63,7 @@ public class LevelReadWrite {
 	
 	//-------------------------------------------------------------------------------
 
-	public static void main(String[] args)  {
+	public static void main(String[] args) throws InvalidLevelFormatException  {
 		LevelReadWrite app = new LevelReadWrite();
 		app.runApp();
 	} // main

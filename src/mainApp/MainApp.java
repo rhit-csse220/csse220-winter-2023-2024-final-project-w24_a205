@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 /**
  * Class: MainApp
@@ -16,6 +17,8 @@ import java.awt.event.KeyListener;
 
 
 public class MainApp extends JFrame implements ActionListener, KeyListener {
+	ArrayList<Coin> coins;
+    private int collectedCoins;
 	
 	private static final int FRAME_WIDTH = 1550 ;
     private static final int FRAME_HEIGHT = 300;
@@ -83,9 +86,11 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 	        // Check for collision with the barrier
 	        if (boxX + BOX_SIZE > barrierX && boxX < barrierX + BAR_WIDTH &&
 	                boxY + BOX_SIZE > barrierY) {
-	            System.out.println("Game Over");
+	            System.out.println("Game Over: You died to electrified barrier!");
 	            System.exit(0);
 	        }
+	        
+	        
 
 	        repaint();
 	    }
@@ -100,6 +105,8 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 
 	        g.setColor(Color.RED);
 	        g.fillRect(barrierX, barrierY, BAR_WIDTH, BAR_HEIGHT);
+	       
+	    
 	    }
 
 	    public void keyTyped(KeyEvent e) {
@@ -114,7 +121,10 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 
 	    public void keyReleased(KeyEvent e) {
 	    }
+	    
+	    
 
+        
 	// runApp
 
 	/**
@@ -124,6 +134,9 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 	
 	
 	public static void main(String[] args) {
+		
+		
+        
 		SwingUtilities.invokeLater(() -> {
 		MainApp mainApp = new MainApp();
 		mainApp.setVisible(true);

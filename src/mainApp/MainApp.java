@@ -573,6 +573,11 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 			elBar4 = false;
 			elBar5 = false;
 			boxX = 0;
+			c1 = false;
+			c2 = false;
+			c3 = false;
+			c4 = false;
+			c5 = false;
 
 			try {
 				readFile("levels/level2.txt");
@@ -596,7 +601,7 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 			boxX = 0;
 
 			try {
-				readFile("levels/level1 .txt");
+				readFile("levels/level1.txt");
 			} catch (InvalidLevelFormatException e1) {
 
 				e1.printStackTrace();

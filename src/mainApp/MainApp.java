@@ -94,7 +94,7 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 	// elementsConfigurationString, then pass to runApp
 	// We'll handle rotation last
 
-	private void readFile(String filename) {
+	private void readFile(String filename) throws InvalidLevelFormatException {
 		String elementsConfiguration = "";
 
 		File file = new File(filename);
@@ -103,6 +103,9 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 			Scanner scanner = new Scanner(file);
 			while (scanner.hasNext()) {
 				String line = scanner.nextLine();
+				if (line.length()>3) {
+					throw new InvalidLevelFormatException(line.length(),3);
+				}
 				elementsConfiguration = elementsConfiguration.concat(line);
 				/*
 				 * for (int i=0;i<line.length();i++) { if (line.charAt(i)=='C') {
@@ -406,12 +409,16 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 	 * @param args unused
 	 */
 
-	public static void main(String[] args) {
+	public static void main(String[] args)  {
 
 		SwingUtilities.invokeLater(() -> {
 			MainApp mainApp = new MainApp();
 			mainApp.setVisible(true);
-			mainApp.readFile("levels/level2.txt");
+			try {
+				mainApp.readFile("levels/level2.txt");
+			} catch (InvalidLevelFormatException e) {
+				e.printStackTrace();
+			}
 
 		});
 	} // main

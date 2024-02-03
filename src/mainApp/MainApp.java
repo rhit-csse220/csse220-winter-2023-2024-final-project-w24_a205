@@ -411,7 +411,7 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 		SwingUtilities.invokeLater(() -> {
 			MainApp mainApp = new MainApp();
 			mainApp.setVisible(true);
-			mainApp.readFile("levels/level1.txt");
+			mainApp.readFile("levels/level2.txt");
 
 		});
 	} // main

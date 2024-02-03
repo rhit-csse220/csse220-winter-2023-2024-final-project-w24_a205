@@ -24,8 +24,6 @@ import java.util.Scanner;
  */
 
 public class MainApp extends JFrame implements ActionListener, KeyListener {
-	ArrayList<Coin> coins;
-	
 
 	private static final int FRAME_WIDTH = 1550;
 	private static final int FRAME_HEIGHT = 300;
@@ -34,6 +32,7 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 	private static final int JUMP_HEIGHT = 40;
 	private static final int STANDARD_BAR_WIDTH = 90;
 	private static final int STANDARD_BAR_HEIGHT = 50;
+	private static final int COIN_SIZE = 20;
 
 	private int boxX;
 	private int boxY;
@@ -81,14 +80,39 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 
 	// BR4
 	private int barrierX4 = 1200;
-	private int barrierY4 = 200 ;
+	private int barrierY4 = 200;
 	private boolean bar4 = false;
 
 	// BR5
 	private int barrierX5 = 1400;
 	private int barrierY5 = 50;
 	private boolean bar5 = false;
+
+	// C1
+	private int coinX1 = 320;
+	private int coinY1 = 170;
+	private boolean c1 = false;
+
+	// C2
+	private int coinX2 = 620;
+	private int coinY2 = 170;
+	private boolean c2 = false;
+
+	// C3
+	private int coinX3 = 920;
+	private int coinY3 = 170;
+	private boolean c3 = false;
 	
+	// C2
+	private int coinX4 = 1210;
+	private int coinY4 = 170;
+	private boolean c4 = false;
+
+	// C3
+	private int coinX5 = 1420;
+	private int coinY5 = 170;
+	private boolean c5 = false;
+
 	Timer timer = new Timer(20, this);
 
 	// For now, we'll have a list of predetermined barrier sizes and positions.
@@ -105,8 +129,8 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 			Scanner scanner = new Scanner(file);
 			while (scanner.hasNext()) {
 				String line = scanner.nextLine();
-				if (line.length()>3) {
-					throw new InvalidLevelFormatException(line.length(),3);
+				if (line.length() > 3) {
+					throw new InvalidLevelFormatException(line.length(), 3);
 				}
 				elementsConfiguration = elementsConfiguration.concat(line);
 				/*
@@ -135,6 +159,11 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 		String elBarElement1;
 		String elBarElement2;
 		String elBarElement3;
+		String coinElement1;
+		String coinElement2;
+		String coinElement3;
+		String coinElement4;
+		String coinElement5;
 
 		inputElements = elementsConfiguration;
 		barElement1 = inputElements.substring(0, 3);
@@ -236,7 +265,92 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 		if (elBarElement3.equals("EL5")) {
 			elBar5 = true;
 		}
-
+		
+		coinElement1 = inputElements.substring(18, 21);
+		if (coinElement1.equals("CO1")) {
+			c1 = true;
+		}
+		if (coinElement1.equals("CO2")) {
+			c2 = true;
+		}
+		if (coinElement1.equals("CO3")) {
+			c3 = true;
+		}
+		if (coinElement1.equals("CO4")) {
+			c4 = true;
+		}
+		if (coinElement1.equals("CO5")) {
+			c5 = true;
+		}
+		
+		coinElement2 = inputElements.substring(21, 24);
+		if (coinElement2.equals("CO1")) {
+			c1 = true;
+		}
+		if (coinElement2.equals("CO2")) {
+			c2 = true;
+		}
+		if (coinElement2.equals("CO3")) {
+			c3 = true;
+		}
+		if (coinElement2.equals("CO4")) {
+			c4 = true;
+		}
+		if (coinElement2.equals("CO5")) {
+			c5 = true;
+		}
+		
+		coinElement3 = inputElements.substring(24, 27);
+		if (coinElement3.equals("CO1")) {
+			c1 = true;
+		}
+		if (coinElement3.equals("CO2")) {
+			c2 = true;
+		}
+		if (coinElement3.equals("CO3")) {
+			c3 = true;
+		}
+		if (coinElement3.equals("CO4")) {
+			c4 = true;
+		}
+		if (coinElement3.equals("CO5")) {
+			c5 = true;
+		}
+		
+		coinElement4 = inputElements.substring(27, 30);
+		if (coinElement4.equals("CO1")) {
+			c1 = true;
+		}
+		if (coinElement4.equals("CO2")) {
+			c2 = true;
+		}
+		if (coinElement4.equals("CO3")) {
+			c3 = true;
+		}
+		if (coinElement4.equals("CO4")) {
+			c4 = true;
+		}
+		if (coinElement4.equals("CO5")) {
+			c5 = true;
+		}
+		
+		coinElement5 = inputElements.substring(30, 33 );
+		if (coinElement5.equals("CO1")) {
+			c1 = true;
+		}
+		if (coinElement5.equals("CO2")) {
+			c2 = true;
+		}
+		if (coinElement5.equals("CO3")) {
+			c3 = true;
+		}
+		if (coinElement5.equals("CO4")) {
+			c4 = true;
+		}
+		if (coinElement5.equals("CO5")) {
+			c5 = true;
+		}
+		System.out.println(inputElements.substring(30, 33 ) );
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
@@ -244,7 +358,6 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 		boxX = 50;
 		boxY = FRAME_HEIGHT - BOX_SIZE - 30; // Initial Y position at the bottom
 
-		
 		timer.restart();
 		timer.start();
 
@@ -334,6 +447,34 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 			System.exit(0);
 		}
 
+		
+		if (c1 == true && boxX + BOX_SIZE > coinX1 && boxX < coinX1 + COIN_SIZE
+				&& boxY + BOX_SIZE > coinY1 && boxY < coinY1 + STANDARD_BAR_HEIGHT ) {
+			System.out.println("Coin collected!");
+			c1 = false;
+			
+		}
+		if (c2 == true && boxX + BOX_SIZE > coinX2 && boxX < coinX2 + COIN_SIZE
+				&& boxY + BOX_SIZE > coinY2 && boxY < coinY2 + STANDARD_BAR_HEIGHT ) {
+			System.out.println("Coin collected!");
+			c2 = false;
+		}
+		if (c3 == true && boxX + BOX_SIZE > coinX3 && boxX < coinX3 + COIN_SIZE
+				&& boxY + BOX_SIZE > coinY3 && boxY < coinY3 + STANDARD_BAR_HEIGHT ) {
+			System.out.println("Coin collected!");
+			c3 = false;
+		}
+		if (c4 == true && boxX + BOX_SIZE > coinX4 && boxX < coinX4 + COIN_SIZE
+				&& boxY + BOX_SIZE > coinY4 && boxY < coinY4 + STANDARD_BAR_HEIGHT ) {
+			System.out.println("Coin collected!");
+			c4 = false;
+		}
+		if (c5 == true && boxX + BOX_SIZE > coinX5 && boxX < coinX5 + COIN_SIZE
+				&& boxY + BOX_SIZE > coinY5 && boxY < coinY5 + STANDARD_BAR_HEIGHT ) {
+			System.out.println("Coin collected!");
+			c5 = false;
+		}
+		
 		repaint();
 	}
 
@@ -388,7 +529,28 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 			g.setColor(Color.RED);
 			g.fillRect(elBarrierX5, elBarrierY5, STANDARD_BAR_WIDTH, STANDARD_BAR_HEIGHT);
 		}
-
+		////////////
+		if (c1 == true) {
+			g.setColor(Color.YELLOW);
+			g.fillOval(coinX1, coinY1, COIN_SIZE, COIN_SIZE);
+		}
+		if (c2 == true) {
+			g.setColor(Color.YELLOW);
+			g.fillOval(coinX2, coinY2, COIN_SIZE, COIN_SIZE);
+		}
+		if (c3 == true) {
+			g.setColor(Color.YELLOW);
+			g.fillOval(coinX3, coinY3, COIN_SIZE, COIN_SIZE);
+		}
+		if (c4 == true) {
+			g.setColor(Color.YELLOW);
+			g.fillOval(coinX4, coinY4, COIN_SIZE, COIN_SIZE);
+		}
+		if (c5 == true) {
+			g.setColor(Color.YELLOW);
+			g.fillOval(coinX5, coinY5, COIN_SIZE, COIN_SIZE);
+			
+		}
 	}
 
 	public void keyTyped(KeyEvent e) {
@@ -410,16 +572,16 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 			elBar3 = false;
 			elBar4 = false;
 			elBar5 = false;
-			boxX=0;
-			
+			boxX = 0;
+
 			try {
 				readFile("levels/level2.txt");
 			} catch (InvalidLevelFormatException e1) {
-				
+
 				e1.printStackTrace();
 			}
-			
-		}   
+
+		}
 		if (e.getKeyCode() == KeyEvent.VK_D) {
 			bar1 = false;
 			bar2 = false;
@@ -431,17 +593,17 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 			elBar3 = false;
 			elBar4 = false;
 			elBar5 = false;
-			boxX=0;
-			
+			boxX = 0;
+
 			try {
-				readFile("levels/level1.txt");
+				readFile("levels/level1 .txt");
 			} catch (InvalidLevelFormatException e1) {
-				
+
 				e1.printStackTrace();
 			}
-			
-		} 
-		
+
+		}
+
 	}
 
 	public void keyReleased(KeyEvent e) {
@@ -450,12 +612,12 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 	// runApp
 
 	/**
- 	 * ensures: runs the application
+	 * ensures: runs the application
 	 * 
 	 * @param args unused
 	 */
 
-	public static void main(String[] args)  {
+	public static void main(String[] args) {
 
 		SwingUtilities.invokeLater(() -> {
 			MainApp mainApp = new MainApp();

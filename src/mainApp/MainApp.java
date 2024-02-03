@@ -25,7 +25,7 @@ import java.util.Scanner;
 
 public class MainApp extends JFrame implements ActionListener, KeyListener {
 	ArrayList<Coin> coins;
-	private int collectedCoins;
+	
 
 	private static final int FRAME_WIDTH = 1550;
 	private static final int FRAME_HEIGHT = 300;
@@ -88,6 +88,8 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 	private int barrierX5 = 1400;
 	private int barrierY5 = 50;
 	private boolean bar5 = false;
+	
+	Timer timer = new Timer(20, this);
 
 	// For now, we'll have a list of predetermined barrier sizes and positions.
 	// The scanner will look for the presets, add them to
@@ -122,7 +124,7 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 
 	}
 
-	private void runApp(String elementsConfiguration) {
+	protected void runApp(String elementsConfiguration) {
 		String inputElements;
 		String barElement1;
 		String barElement2;
@@ -239,7 +241,8 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 		boxX = 50;
 		boxY = FRAME_HEIGHT - BOX_SIZE - 30; // Initial Y position at the bottom
 
-		Timer timer = new Timer(20, this);
+		
+		timer.restart();
 		timer.start();
 
 		addKeyListener(this);
@@ -393,6 +396,39 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			isJumping = true;
 		}
+		if (e.getKeyCode() == KeyEvent.VK_U) {
+			bar1 = false;
+			bar2 = false;
+			bar3 = false;
+			bar4 = false;
+			bar5 = false;
+			elBar1 = false;
+			elBar2 = false;
+			elBar3 = false;
+			elBar4 = false;
+			elBar5 = false;
+			boxX=0;
+			
+			readFile("levels/level2.txt");
+			
+		}   
+		if (e.getKeyCode() == KeyEvent.VK_D) {
+			bar1 = false;
+			bar2 = false;
+			bar3 = false;
+			bar4 = false;
+			bar5 = false;
+			elBar1 = false;
+			elBar2 = false;
+			elBar3 = false;
+			elBar4 = false;
+			elBar5 = false;
+			boxX=0;
+			
+			readFile("levels/level1 .txt");
+			
+		} 
+		
 	}
 
 	public void keyReleased(KeyEvent e) {
@@ -401,7 +437,7 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 	// runApp
 
 	/**
-	 * ensures: runs the application
+ 	 * ensures: runs the application
 	 * 
 	 * @param args unused
 	 */
@@ -411,7 +447,7 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 		SwingUtilities.invokeLater(() -> {
 			MainApp mainApp = new MainApp();
 			mainApp.setVisible(true);
-			mainApp.readFile("levels/level2.txt");
+			mainApp.readFile("levels/level1.txt");
 
 		});
 	} // main

@@ -33,6 +33,7 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 	private static final int STANDARD_BAR_WIDTH = 90;
 	private static final int STANDARD_BAR_HEIGHT = 50;
 	private static final int COIN_SIZE = 20;
+	private boolean isPaused = false;
 
 	private int boxX;
 	private int boxY;
@@ -120,38 +121,9 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 	// elementsConfigurationString, then pass to runApp
 	// We'll handle rotation last
 
-	private void readFile(String filename) throws InvalidLevelFormatException {
-		String elementsConfiguration = "";
+	
 
-		File file = new File(filename);
-
-		try {
-			Scanner scanner = new Scanner(file);
-			while (scanner.hasNext()) {
-				String line = scanner.nextLine();
-				if (line.length() > 3) {
-					throw new InvalidLevelFormatException(line.length(), 3);
-				}
-				elementsConfiguration = elementsConfiguration.concat(line);
-				/*
-				 * for (int i=0;i<line.length();i++) { if (line.charAt(i)=='C') {
-				 * System.out.println("Create coin!"); } if (line.charAt(i)=='B') {
-				 * System.out.println("Create Barrier");
-				 * 
-				 * } if (line.charAt(i)=='E') { System.out.println("Create Electric Barrier"); }
-				 * }
-				 */
-			}
-			scanner.close();
-		} catch (FileNotFoundException e) {
-			System.err.println("File was not found: " + filename);
-			e.printStackTrace();
-		}
-		runApp(elementsConfiguration);
-
-	}
-
-	protected void runApp(String elementsConfiguration) {
+	public void runApp(String elementsConfiguration) {
 		String inputElements;
 		String barElement1;
 		String barElement2;
@@ -350,7 +322,7 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 		if (coinElement5.equals("CO5")) {
 			c5 = true;
 		}
-		System.out.println(inputElements.substring(30, 33 ) );
+		 
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
@@ -578,13 +550,18 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 			c3 = false;
 			c4 = false;
 			c5 = false;
+			timer.stop();
+			
+			
 
 			try {
-				readFile("levels/level2.txt");
+				FileReader.readFile("levels/level2.txt");
+				setVisible(false);
 			} catch (InvalidLevelFormatException e1) {
 
 				e1.printStackTrace();
 			}
+			
 
 		}
 		if (e.getKeyCode() == KeyEvent.VK_D) {
@@ -595,19 +572,36 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 			bar5 = false;
 			elBar1 = false;
 			elBar2 = false;
-			elBar3 = false;
-			elBar4 = false;
+			elBar3 = false;     
+			elBar4 = false; 
 			elBar5 = false;
 			boxX = 0;
+			timer.stop();
 
 			try {
-				readFile("levels/level1.txt");
+				FileReader.readFile("levels/level1.txt");
+				setVisible(false);
+				  
 			} catch (InvalidLevelFormatException e1) {
 
 				e1.printStackTrace();
+				
+				 
 			}
+			
+			
 
 		}
+		if (e.getKeyCode() == KeyEvent.VK_P) {
+			if (isPaused == true) {
+				isPaused = false;
+				timer.start();
+			}else {
+				isPaused = true; 
+			timer.stop();
+		}
+		}
+		
 
 	}
 
@@ -625,10 +619,9 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 	public static void main(String[] args) {
 
 		SwingUtilities.invokeLater(() -> {
-			MainApp mainApp = new MainApp();
-			mainApp.setVisible(true);
+			
 			try {
-				mainApp.readFile("levels/level1.txt");
+				FileReader.readFile("levels/level1.txt");
 			} catch (InvalidLevelFormatException e) {
 				e.printStackTrace();
 			}

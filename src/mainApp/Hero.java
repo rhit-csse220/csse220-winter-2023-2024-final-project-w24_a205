@@ -1,4 +1,3 @@
-
 package mainApp;
 
 import java.awt.Color;
@@ -6,7 +5,7 @@ import java.awt.Graphics;
 
 public class Hero {
 	
-	private static final int BOX_SIZE = 40;
+	private static final int BOX_SIZE = 50;
 	private int heroX, heroY;
 	
 	public Hero(int heroX, int heroY) {

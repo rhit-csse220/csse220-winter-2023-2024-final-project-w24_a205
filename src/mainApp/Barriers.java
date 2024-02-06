@@ -2,6 +2,9 @@ package mainApp;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import java.awt.Color;
+import java.awt.Graphics;
+
 public class Barriers {
 	
 	private static final int STANDARD_BAR_SIZE = 40;

@@ -30,89 +30,11 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 	private static final int BOX_SIZE = 40;
 	private static final int MOVE_SPEED = 5;
 	private static final int JUMP_HEIGHT = 40;
-	private static final int STANDARD_BAR_WIDTH = 90;
-	private static final int STANDARD_BAR_HEIGHT = 50;
-	private static final int COIN_SIZE = 20;
 	private boolean isPaused = false;
 
 	private int boxX;
 	private int boxY;
 	private boolean isJumping;
-
-	// EL1
-	private int elBarrierX1 = 300;
-	private int elBarrierY1 = 200;
-	private boolean elBar1 = false;
-
-	// EL2
-	private int elBarrierX2 = 600;
-	private int elBarrierY2 = 50;
-	private boolean elBar2 = false;
-
-	// EL3
-	private int elBarrierX3 = 900;
-	private int elBarrierY3 = 200;
-	private boolean elBar3 = false;
-
-	// EL4
-	private int elBarrierX4 = 1200;
-	private int elBarrierY4 = 50;
-	private boolean elBar4 = false;
-
-	// EL5
-	private int elBarrierX5 = 1400;
-	private int elBarrierY5 = 200;
-	private boolean elBar5 = false;
-
-	// BR1
-	private int barrierX1 = 300;
-	private int barrierY1 = 50;
-	private boolean bar1 = false;
-
-	// BR2
-	private int barrierX2 = 600;
-	private int barrierY2 = 200;
-	private boolean bar2 = false;
-
-	// BR3
-	private int barrierX3 = 900;
-	private int barrierY3 = 50;
-	private boolean bar3 = false;
-
-	// BR4
-	private int barrierX4 = 1200;
-	private int barrierY4 = 200;
-	private boolean bar4 = false;
-
-	// BR5
-	private int barrierX5 = 1400;
-	private int barrierY5 = 50;
-	private boolean bar5 = false;
-
-	// C1
-	private int coinX1 = 320;
-	private int coinY1 = 170;
-	private boolean c1 = false;
-
-	// C2
-	private int coinX2 = 620;
-	private int coinY2 = 170;
-	private boolean c2 = false;
-
-	// C3
-	private int coinX3 = 920;
-	private int coinY3 = 170;
-	private boolean c3 = false;
-	
-	// C2
-	private int coinX4 = 1210;
-	private int coinY4 = 170;
-	private boolean c4 = false;
-
-	// C3
-	private int coinX5 = 1420;
-	private int coinY5 = 170;
-	private boolean c5 = false;
 
 	Timer timer = new Timer(20, this);
 
@@ -139,7 +61,7 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 
 		inputElements = elementsConfiguration;
 		barElement1 = inputElements.substring(0, 3);
-		if (barElement1.equals("BR1")) {
+	/*if (barElement1.equals("BR1")) {
 			bar1 = true;
 		}
 		if (barElement1.equals("BR2")) {
@@ -321,8 +243,8 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 		}
 		if (coinElement5.equals("CO5")) {
 			c5 = true;
-		}
-		 
+	}
+	*/	 
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
@@ -366,90 +288,6 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 			boxY = 0 + BOX_SIZE;
 		}
 
-		// Check for collision with the barrier
-		if (bar1 == true && boxX + BOX_SIZE > barrierX1 && boxX < barrierX1 + STANDARD_BAR_WIDTH
-				&& boxY + BOX_SIZE > barrierY1 && boxY < barrierY1 + STANDARD_BAR_HEIGHT) {
-			boxX = barrierX1 - BOX_SIZE;
-		}
-		if (bar2 == true && boxX + BOX_SIZE > barrierX2 && boxX < barrierX2 + STANDARD_BAR_WIDTH
-				&& boxY + BOX_SIZE > barrierY2 && boxY < barrierY2 + STANDARD_BAR_HEIGHT) {
-			boxX = barrierX2 - BOX_SIZE;
-		}
-		if (bar3 == true && boxX + BOX_SIZE > barrierX3 && boxX < barrierX3 + STANDARD_BAR_WIDTH
-				&& boxY + BOX_SIZE > barrierY3 && boxY < barrierY3 + STANDARD_BAR_HEIGHT) {
-			boxX = barrierX3 - BOX_SIZE;
-		}
-		if (bar4 == true && boxX + BOX_SIZE > barrierX4 && boxX < barrierX4 + STANDARD_BAR_WIDTH
-				&& boxY + BOX_SIZE > barrierY4 && boxY < barrierY4 + STANDARD_BAR_HEIGHT) {
-			boxX = barrierX4 - BOX_SIZE;
-		}
-		if (bar5 == true && boxX + BOX_SIZE > barrierX5 && boxX < barrierX5 + STANDARD_BAR_WIDTH
-				&& boxY + BOX_SIZE > barrierY5 && boxY < barrierY5 + STANDARD_BAR_HEIGHT) {
-			boxX = barrierX5 - BOX_SIZE;
-		}
-
-		/////////////
-		
-	
-
-		if (elBar1 == true && boxX + BOX_SIZE > elBarrierX1 && boxX < elBarrierX1 + STANDARD_BAR_WIDTH
-				&& boxY + BOX_SIZE > elBarrierY1 && boxY < elBarrierY1 + STANDARD_BAR_HEIGHT) {
-			System.out.println("Game Over: You died to electrified barrier!");
-			System.exit(0);
-			
-
-		}
-
-		if (elBar2 == true && boxX + BOX_SIZE > elBarrierX2 && boxX < elBarrierX2 + STANDARD_BAR_WIDTH
-				&& boxY + BOX_SIZE > elBarrierY2 && boxY < elBarrierY2 + STANDARD_BAR_HEIGHT) {
-			System.out.println("Game Over: You died to electrified barrier!");
-			System.exit(0);
-		}
-		if (elBar3 == true && boxX + BOX_SIZE > elBarrierX3 && boxX < elBarrierX3 + STANDARD_BAR_WIDTH
-				&& boxY + BOX_SIZE > elBarrierY3 && boxY < elBarrierY3 + STANDARD_BAR_HEIGHT) {
-			System.out.println("Game Over: You died to electrified barrier!");
-			System.exit(0);
-		}
-		if (elBar4 == true && boxX + BOX_SIZE > elBarrierX4 && boxX < elBarrierX4 + STANDARD_BAR_WIDTH
-				&& boxY + BOX_SIZE > elBarrierY4 && boxY < elBarrierY4 + STANDARD_BAR_HEIGHT) {
-			System.out.println("Game Over: You died to electrified barrier!");
-			System.exit(0);
-		}
-
-		if (elBar5 == true && boxX + BOX_SIZE > elBarrierX5 && boxX < elBarrierX5 + STANDARD_BAR_WIDTH
-				&& boxY + BOX_SIZE > elBarrierY5 && boxY < elBarrierY5 + STANDARD_BAR_HEIGHT) {
-			System.out.println("Game Over: You died to electrified barrier!");
-			System.exit(0);
-		}
-
-		
-		if (c1 == true && boxX + BOX_SIZE > coinX1 && boxX < coinX1 + COIN_SIZE
-				&& boxY + BOX_SIZE > coinY1 && boxY < coinY1 + STANDARD_BAR_HEIGHT ) {
-			System.out.println("Coin collected!");
-			c1 = false;
-			
-		}
-		if (c2 == true && boxX + BOX_SIZE > coinX2 && boxX < coinX2 + COIN_SIZE
-				&& boxY + BOX_SIZE > coinY2 && boxY < coinY2 + STANDARD_BAR_HEIGHT ) {
-			System.out.println("Coin collected!");
-			c2 = false;
-		}
-		if (c3 == true && boxX + BOX_SIZE > coinX3 && boxX < coinX3 + COIN_SIZE
-				&& boxY + BOX_SIZE > coinY3 && boxY < coinY3 + STANDARD_BAR_HEIGHT ) {
-			System.out.println("Coin collected!");
-			c3 = false;
-		}
-		if (c4 == true && boxX + BOX_SIZE > coinX4 && boxX < coinX4 + COIN_SIZE
-				&& boxY + BOX_SIZE > coinY4 && boxY < coinY4 + STANDARD_BAR_HEIGHT ) {
-			System.out.println("Coin collected!");
-			c4 = false;
-		}
-		if (c5 == true && boxX + BOX_SIZE > coinX5 && boxX < coinX5 + COIN_SIZE
-				&& boxY + BOX_SIZE > coinY5 && boxY < coinY5 + STANDARD_BAR_HEIGHT ) {
-			System.out.println("Coin collected!");
-			c5 = false;
-		}
-		
 		repaint();
 	}
 
@@ -461,71 +299,6 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 		g.setColor(Color.DARK_GRAY);
 		g.fillRect(0, 270, 1550, 50);
 
-		if (bar1 == true) {
-			g.setColor(Color.GREEN);
-			g.fillRect(barrierX1, barrierY1, STANDARD_BAR_WIDTH, STANDARD_BAR_HEIGHT);
-		}
-		if (bar2 == true) {
-			g.setColor(Color.GREEN);
-			g.fillRect(barrierX2, barrierY2, STANDARD_BAR_WIDTH, STANDARD_BAR_HEIGHT);
-		}
-		if (bar3 == true) {
-			g.setColor(Color.GREEN);
-			g.fillRect(barrierX3, barrierY3, STANDARD_BAR_WIDTH, STANDARD_BAR_HEIGHT);
-		}
-		if (bar4 == true) {
-			g.setColor(Color.GREEN);
-			g.fillRect(barrierX4, barrierY4, STANDARD_BAR_WIDTH, STANDARD_BAR_HEIGHT);
-		}
-		if (bar5 == true) {
-			g.setColor(Color.GREEN);
-			g.fillRect(barrierX5, barrierY5, STANDARD_BAR_WIDTH, STANDARD_BAR_HEIGHT);
-		}
-
-		///////////
-
-		if (elBar1 == true) {
-			g.setColor(Color.RED);
-			g.fillRect(elBarrierX1, elBarrierY1, STANDARD_BAR_WIDTH, STANDARD_BAR_HEIGHT);
-		}
-		if (elBar2 == true) {
-			g.setColor(Color.RED);
-			g.fillRect(elBarrierX2, elBarrierY2, STANDARD_BAR_WIDTH, STANDARD_BAR_HEIGHT);
-		}
-		if (elBar3 == true) {
-			g.setColor(Color.RED);
-			g.fillRect(elBarrierX3, elBarrierY3, STANDARD_BAR_WIDTH, STANDARD_BAR_HEIGHT);
-		}
-		if (elBar4 == true) {
-			g.setColor(Color.RED);
-			g.fillRect(elBarrierX4, elBarrierY4, STANDARD_BAR_WIDTH, STANDARD_BAR_HEIGHT);
-		}
-		if (elBar5 == true) {
-			g.setColor(Color.RED);
-			g.fillRect(elBarrierX5, elBarrierY5, STANDARD_BAR_WIDTH, STANDARD_BAR_HEIGHT);
-		}
-		////////////
-		if (c1 == true) {
-			g.setColor(Color.YELLOW);
-			g.fillOval(coinX1, coinY1, COIN_SIZE, COIN_SIZE);
-		}
-		if (c2 == true) {
-			g.setColor(Color.YELLOW);
-			g.fillOval(coinX2, coinY2, COIN_SIZE, COIN_SIZE);
-		}
-		if (c3 == true) {
-			g.setColor(Color.YELLOW);
-			g.fillOval(coinX3, coinY3, COIN_SIZE, COIN_SIZE);
-		}
-		if (c4 == true) {
-			g.setColor(Color.YELLOW);
-			g.fillOval(coinX4, coinY4, COIN_SIZE, COIN_SIZE);
-		}
-		if (c5 == true) {
-			g.setColor(Color.YELLOW);
-			g.fillOval(coinX5, coinY5, COIN_SIZE, COIN_SIZE);
-			
-		}
 	}
 
 	public void keyTyped(KeyEvent e) {
@@ -536,7 +309,10 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			isJumping = true;
 		}
+	/*
 		if (e.getKeyCode() == KeyEvent.VK_U) {
+			
+			
 			bar1 = false;
 			bar2 = false;
 			bar3 = false;
@@ -595,6 +371,7 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 			
 
 		}
+		*/
 		if (e.getKeyCode() == KeyEvent.VK_P) {
 			if (isPaused == true) {
 				isPaused = false;
@@ -624,7 +401,8 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 		SwingUtilities.invokeLater(() -> {
 			
 			try {
-				FileReader.readFile("levels/level3.txt");
+				FileReader fileReader = new FileReader();
+				fileReader.readFile("levels/level3.txt");
 			} catch (InvalidLevelFormatException e) {
 				e.printStackTrace();
 			}

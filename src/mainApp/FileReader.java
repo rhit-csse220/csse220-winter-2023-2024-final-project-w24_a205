@@ -84,9 +84,9 @@ public class FileReader {
 			System.err.println("File was not found: " + filename);
 			e.printStackTrace();
 		}
-		// MainApp mainApp = new MainApp();
-		// mainApp.setVisible(true);
-		// mainApp.runApp(elementsConfiguration);
+		 MainApp mainApp = new MainApp();
+		 mainApp.setVisible(true);
+		 mainApp.runApp();
 
 	}
 

@@ -45,7 +45,7 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 
 	
 
-	public void runApp(String elementsConfiguration) {
+	public void runApp() {
 		String inputElements;
 		String barElement1;
 		String barElement2;
@@ -59,8 +59,8 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 		String coinElement4;
 		String coinElement5;
 
-		inputElements = elementsConfiguration;
-		barElement1 = inputElements.substring(0, 3);
+		//inputElements = elementsConfiguration;
+		//barElement1 = inputElements.substring(0, 3);
 	/*if (barElement1.equals("BR1")) {
 			bar1 = true;
 		}

@@ -397,7 +397,8 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 		SwingUtilities.invokeLater(() -> {
 			
 			try {
-				FileReader.readFile("levels/level3.txt");
+				FileReader fileReader = new FileReader();
+				fileReader.readFile("levels/level3.txt");
 			} catch (InvalidLevelFormatException e) {
 				e.printStackTrace();
 			}

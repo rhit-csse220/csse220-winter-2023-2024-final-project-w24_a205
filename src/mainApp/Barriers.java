@@ -13,6 +13,8 @@ public class Barriers {
 		this.barrierX=barrierX;
 		this.barrierY=barrierY;
 		this.isElectric=isElectric;
+		System.out.println("I am a barrier! " + barrierX + " " + barrierY);
+		
 	}
 	
 	public void paintBarrier(Graphics g2) {

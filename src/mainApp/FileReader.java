@@ -11,7 +11,7 @@ public class FileReader {
 	private ArrayList<Coin> coins=new ArrayList<>();
 
 	public void readFile(String filename) throws InvalidLevelFormatException {
-		String elementsConfiguration = "";
+		
 
 		File file = new File(filename);
 
@@ -20,6 +20,8 @@ public class FileReader {
 			char lineNum = '1';
 			int heightSection = 1;
 			int yPosIteration = 70;
+			int yPos; 
+			int xPos; 
 			while (scanner.hasNext()) {
 				String line = scanner.nextLine();
 
@@ -35,8 +37,12 @@ public class FileReader {
 							lineNum = '3';
 							heightSection = 3;
 						}
-						System.out.println("Create coin! at " + i * 50 + " " + heightSection * yPosIteration);
-						this.coins.add(new Coin(i, i));
+						xPos = 0;
+						xPos = i * 50;
+						yPos = 0;
+						yPos = heightSection * yPosIteration;
+						System.out.println("Create coin! at " + xPos + " " + yPos);
+						this.coins.add(new Coin(xPos, yPos));
 					}
 					
 					if (line.charAt(i) == 'B') {
@@ -51,9 +57,13 @@ public class FileReader {
 								lineNum = '3';
 								heightSection = 3;
 							}
+							xPos = 0;
+							xPos = i * 50;
+							yPos = 0;
+							yPos = heightSection * yPosIteration;
 
-						System.out.println("Create Barrier at " + i * 50 + " " + heightSection * yPosIteration);
-						this.barriers.add(new Barriers(i, i, false));
+						System.out.println("Create Barrier at " + xPos + " " + yPos);
+						this.barriers.add(new Barriers(xPos, yPos, false));
 						
 
 					}
@@ -69,8 +79,12 @@ public class FileReader {
 							lineNum = '3';
 							heightSection = 3;
 						}
-						System.out.println("Create Electric Barrier at " + " " + heightSection * yPosIteration);
-						this.barriers.add(new Barriers(i, i, true));
+						xPos = 0;
+						xPos = i * 50;
+						yPos = 0;
+						yPos = heightSection * yPosIteration;
+						System.out.println("Create Electric Barrier at " + xPos + " " + yPos);
+						this.barriers.add(new Barriers(xPos, yPos, true));
 					}
 				}
 				if (line.length() > 31) {

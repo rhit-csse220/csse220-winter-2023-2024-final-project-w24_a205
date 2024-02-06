@@ -389,11 +389,14 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 		}
 
 		/////////////
+		
+	
 
 		if (elBar1 == true && boxX + BOX_SIZE > elBarrierX1 && boxX < elBarrierX1 + STANDARD_BAR_WIDTH
 				&& boxY + BOX_SIZE > elBarrierY1 && boxY < elBarrierY1 + STANDARD_BAR_HEIGHT) {
 			System.out.println("Game Over: You died to electrified barrier!");
 			System.exit(0);
+			
 
 		}
 
@@ -621,7 +624,7 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 		SwingUtilities.invokeLater(() -> {
 			
 			try {
-				FileReader.readFile("levels/level1.txt");
+				FileReader.readFile("levels/level3.txt");
 			} catch (InvalidLevelFormatException e) {
 				e.printStackTrace();
 			}

@@ -16,9 +16,10 @@ public class GameComponent extends JComponent {
 	private ArrayList<Coin> coins=new ArrayList<>();
 	private ArrayList<Missiles> missiles=new ArrayList<>();
 	
-	public void listsIn(ArrayList bars, ArrayList coins) {
+	public void listsIn(ArrayList bars, ArrayList coins, ArrayList missiles) {
 		this.barriers = bars;
-		this.coins = coins; 
+		this.coins = coins;
+		this.missiles=missiles;
 	}
 	
 	public void updateMissiles() {
@@ -45,8 +46,8 @@ public class GameComponent extends JComponent {
 			coins.get(i).drawOn(graphics2);
 		}
 		
-		for (int i = 0; i < coins.size(); i++) {
-			coins.get(i).drawOn(graphics2);
+		for (int i = 0; i < missiles.size(); i++) {
+			missiles.get(i).drawOn(graphics2);
 		}
 		
 	}

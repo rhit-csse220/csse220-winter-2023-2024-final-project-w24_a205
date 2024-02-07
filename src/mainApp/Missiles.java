@@ -23,8 +23,8 @@ public class Missiles {
 		return this.missileX;
 	}
 	
-	public void paint(Graphics g2) {
-		g2.setColor(Color.BLACK);
+	public void drawOn(Graphics g2) {
+		g2.setColor(Color.RED);
 		g2.fillRect(this.missileX, this.missileY, MISSILE_SIZE, MISSILE_SIZE);
 	}
 

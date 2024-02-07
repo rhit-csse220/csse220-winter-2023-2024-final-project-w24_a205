@@ -1,6 +1,5 @@
 package mainApp;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
@@ -16,7 +15,7 @@ public class GameComponent extends JComponent {
 	private ArrayList<Coin> coins=new ArrayList<>();
 	private ArrayList<Missiles> missiles=new ArrayList<>();
 	
-	public void listsIn(ArrayList bars, ArrayList coins, ArrayList missiles) {
+	public void listsIn(ArrayList<Barriers> bars, ArrayList<Coin> coins, ArrayList<Missiles> missiles) {
 		this.barriers = bars;
 		this.coins = coins;
 		this.missiles=missiles;
@@ -24,7 +23,8 @@ public class GameComponent extends JComponent {
 	
 	public void updateMissiles() {
 		for(Missiles missile: this.missiles) {
-			if (missile.move()==true) {
+			boolean reset = missile.move();
+			if (reset) {
 				int missileX=this.getX()+missile.getX();
 				int missileY=this.getY();
 				this.missiles.remove(missile);
@@ -49,7 +49,7 @@ public class GameComponent extends JComponent {
 		for (int i = 0; i < missiles.size(); i++) {
 			missiles.get(i).drawOn(graphics2);
 		}
-		
+		updateMissiles();
 	}
 	
 

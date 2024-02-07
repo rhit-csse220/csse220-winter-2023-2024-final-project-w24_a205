@@ -1,7 +1,8 @@
 package mainApp;
 
 import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.Rectangle2D;
 
 public class Missiles {
 	
@@ -16,16 +17,17 @@ public class Missiles {
 	
 	public boolean move() {
 		this.missileX -= this.xVelocity;
-		return this.missileX <= 0;
+		return this.missileX < 0;
 	}
 	
 	public int getX() {
 		return this.missileX;
 	}
 	
-	public void drawOn(Graphics g2) {
+	public void drawOn(Graphics2D g2) {
 		g2.setColor(Color.RED);
-		g2.fillRect(this.missileX, this.missileY, MISSILE_SIZE, MISSILE_SIZE);
+		Rectangle2D.Double missile=new Rectangle2D.Double(this.missileX, this.missileY, MISSILE_SIZE, MISSILE_SIZE);
+		g2.fill(missile);
 	}
 
 }

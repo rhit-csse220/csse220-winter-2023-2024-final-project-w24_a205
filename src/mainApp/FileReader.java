@@ -42,7 +42,7 @@ public class FileReader {
 						yPos = 0;
 						yPos = heightSection * yPosIteration;
 						System.out.println("Create coin! at " + xPos + " " + yPos);
-						//this.coins.add(new Coin(xPos, yPos));
+						this.coins.add(new Coin(xPos, yPos));
 					}
 					
 					if (line.charAt(i) == 'B') {

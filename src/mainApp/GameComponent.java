@@ -45,7 +45,9 @@ public class GameComponent extends JComponent {
 			coins.get(i).drawOn(graphics2);
 		}
 		
-		
+		for (int i = 0; i < coins.size(); i++) {
+			coins.get(i).drawOn(graphics2);
+		}
 		
 	}
 	

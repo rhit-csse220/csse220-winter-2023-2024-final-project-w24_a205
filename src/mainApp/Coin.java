@@ -14,7 +14,8 @@ public class Coin {
 		this.coinY=coinY;
 	}
 	
-	public void drawOn(Graphics2D g2) {
+
+	public void drawOn(Graphics g2) {
 		g2.setColor(Color.YELLOW);
 		g2.fillOval(this.coinX, this.coinY, COIN_SIZE, COIN_SIZE);
 	}

@@ -122,7 +122,7 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			isJumping = true;
 		}
-	/*
+	
 		if (e.getKeyCode() == KeyEvent.VK_U) {
 			
 			boxX = 0;
@@ -131,7 +131,8 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 			
 
 			try {
-				FileReader.readFile("levels/level2.txt");
+				FileReader fileReader2 = new FileReader();
+				fileReader2.readFile("levels/level2.txt");
 				setVisible(false);
 			} catch (InvalidLevelFormatException e1) {
 
@@ -146,7 +147,8 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 			timer.stop();
 
 			try {
-				FileReader.readFile("levels/level1.txt");
+				FileReader fileReader = new FileReader();
+				fileReader.readFile("levels/level1.txt");
 				setVisible(false);
 				  
 			} catch (InvalidLevelFormatException e1) {
@@ -159,7 +161,7 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 			
 
 		}
-		*/
+		
 		if (e.getKeyCode() == KeyEvent.VK_P) {
 			if (isPaused == true) {
 				isPaused = false;

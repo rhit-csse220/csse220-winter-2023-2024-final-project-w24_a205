@@ -9,7 +9,7 @@ import java.math.*;
 
 public class Barriers {
 	
-	private static final int STANDARD_BAR_WIDTH = 70;
+	private static final int STANDARD_BAR_WIDTH = 100;
 	private static final int STANDARD_BAR_HEIGHT = 30;
 	private int barrierX, barrierY;
 	private boolean isElectric;

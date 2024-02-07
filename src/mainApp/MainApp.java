@@ -83,7 +83,7 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 		} else {
 			// Otherwise, simulate gravity by moving the box downward
 			if (boxY < FRAME_HEIGHT - BOX_SIZE - 30) {
-				boxY += 2; // Adjust this value for fall speed
+				boxY += 3; // Adjust this value for fall speed
 			}
 		}
 
@@ -125,23 +125,7 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 	/*
 		if (e.getKeyCode() == KeyEvent.VK_U) {
 			
-			
-			bar1 = false;
-			bar2 = false;
-			bar3 = false;
-			bar4 = false;
-			bar5 = false;
-			elBar1 = false;
-			elBar2 = false;
-			elBar3 = false;
-			elBar4 = false;
-			elBar5 = false;
 			boxX = 0;
-			c1 = false;
-			c2 = false;
-			c3 = false;
-			c4 = false;
-			c5 = false;
 			timer.stop();
 			
 			
@@ -157,16 +141,7 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 
 		}
 		if (e.getKeyCode() == KeyEvent.VK_D) {
-			bar1 = false;
-			bar2 = false;
-			bar3 = false;
-			bar4 = false;
-			bar5 = false;
-			elBar1 = false;
-			elBar2 = false;
-			elBar3 = false;     
-			elBar4 = false; 
-			elBar5 = false;
+			
 			boxX = 0;
 			timer.stop();
 
@@ -229,7 +204,7 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 			
 			try {
 				FileReader fileReader = new FileReader();
-				fileReader.readFile("levels/level3.txt");
+				fileReader.readFile("levels/level2.txt");
 			} catch (InvalidLevelFormatException e) {
 				e.printStackTrace();
 			}

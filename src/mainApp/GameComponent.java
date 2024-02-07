@@ -9,6 +9,7 @@ import javax.swing.JComponent;
 
 public class GameComponent extends JComponent {
 	
+	
 	int barX, barY;
 	Boolean isElectric;
 	private ArrayList<Barriers> barriers=new ArrayList<>();
@@ -32,7 +33,6 @@ public class GameComponent extends JComponent {
 	}
 
 	
-	
 	@Override
 	protected void paintComponent(Graphics graphics) {
 		super.paintComponent(graphics);
@@ -40,6 +40,9 @@ public class GameComponent extends JComponent {
 
 		for (int i = 0; i < barriers.size(); i++) {
 			barriers.get(i).drawOn(graphics2);
+		}
+		for (int i = 0; i < coins.size(); i++) {
+			coins.get(i).drawOn(graphics2);
 		}
 		
 		

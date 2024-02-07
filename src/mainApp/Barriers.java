@@ -18,6 +18,7 @@ public class Barriers {
 		
 	}
 	
+	
 	public void drawOn(Graphics2D g2) {
 		if (this.isElectric==true) {
 			g2.setColor(Color.RED);

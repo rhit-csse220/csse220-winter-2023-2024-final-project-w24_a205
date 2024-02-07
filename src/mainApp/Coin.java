@@ -2,6 +2,7 @@ package mainApp;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 public class Coin {
 	
@@ -13,7 +14,7 @@ public class Coin {
 		this.coinY=coinY;
 	}
 	
-	public void paint(Graphics g2) {
+	public void drawOn(Graphics2D g2) {
 		g2.setColor(Color.YELLOW);
 		g2.fillOval(this.coinX, this.coinY, COIN_SIZE, COIN_SIZE);
 	}

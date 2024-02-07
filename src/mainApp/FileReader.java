@@ -19,7 +19,7 @@ public class FileReader {
 			Scanner scanner = new Scanner(file);
 			char lineNum = '1';
 			int heightSection = 1;
-			int yPosIteration = 70;
+			int yPosIteration = 50;
 			int yPos; 
 			int xPos; 
 			while (scanner.hasNext()) {
@@ -42,7 +42,7 @@ public class FileReader {
 						yPos = 0;
 						yPos = heightSection * yPosIteration;
 						System.out.println("Create coin! at " + xPos + " " + yPos);
-						//this.coins.add(new Coin(xPos, yPos));
+						this.coins.add(new Coin(xPos, yPos));
 					}
 					
 					if (line.charAt(i) == 'B') {

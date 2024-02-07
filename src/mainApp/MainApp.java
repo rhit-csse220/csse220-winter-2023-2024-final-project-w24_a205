@@ -43,15 +43,16 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 
 	public void runApp(GameComponent gComp) {
 		
-		JFrame frame = new JFrame();
+		setSize(FRAME_WIDTH, FRAME_HEIGHT);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(false);
 
-		frame.setSize(1550, 300);
-		frame.setTitle("Game Time!!");
+		
 
-		frame.add(gComp); 
+		add(gComp); 
 
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
 		
 		
 		
@@ -236,6 +237,6 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 		});
 		
 		
-	} 
-
+	}
 }
+

@@ -7,21 +7,30 @@ import java.awt.geom.Rectangle2D;
 public class Missiles {
 	
 	private static final int MISSILE_SIZE = 20;
-	private int missileX, missileY;
-	private double xVelocity = 5;
+	private int missileX, missileY, initialX;
+	private double xVelocity = 20;
 	
 	public Missiles(int missileX, int missileY) {
 		this.missileX=missileX;
 		this.missileY=missileY;
+		this.initialX=missileX;
 	}
 	
 	public boolean move() {
-		this.missileX -= this.xVelocity;
+		missileX -= this.xVelocity;
 		return this.missileX < 0;
 	}
 	
+	public void resetPosition() {
+		
+	}
+	
 	public int getX() {
-		return this.missileX;
+		return this.initialX;
+	}
+	
+	public int getY() {
+		return this.missileY;
 	}
 	
 	public void drawOn(Graphics2D g2) {
@@ -31,4 +40,3 @@ public class Missiles {
 	}
 
 }
-

@@ -26,7 +26,7 @@ public class GameComponent extends JComponent {
 			boolean reset = missile.move();
 			if (reset) {
 				int missileX=this.getX()+missile.getX();
-				int missileY=this.getY();
+				int missileY=missile.getY();
 				this.missiles.remove(missile);
 				this.missiles.add(new Missiles(missileX, missileY));
 			}

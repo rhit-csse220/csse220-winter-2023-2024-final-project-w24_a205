@@ -204,7 +204,7 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 			
 			try {
 				FileReader fileReader = new FileReader();
-				fileReader.readFile("levels/level2.txt");
+				fileReader.readFile("levels/level1.txt");
 			} catch (InvalidLevelFormatException e) {
 				e.printStackTrace();
 			}

@@ -11,7 +11,7 @@ public class FileReader {
 	private ArrayList<Coin> coins=new ArrayList<>();
 	private ArrayList<Missiles> missiles=new ArrayList<>();
 
-	public void readFile(String filename) throws InvalidLevelFormatException {
+public void readFile(String filename) throws InvalidLevelFormatException {
 		
 
 		File file = new File(filename);
@@ -23,6 +23,9 @@ public class FileReader {
 			int yPosIteration = 50;
 			int yPos; 
 			int xPos; 
+			char rotR = 'R';
+			char rotL = 'L';
+			char rotNull = 'N';
 			while (scanner.hasNext()) {
 				String line = scanner.nextLine();
 
@@ -64,7 +67,7 @@ public class FileReader {
 							yPos = heightSection * yPosIteration;
 
 						System.out.println("Create Barrier at " + xPos + " " + yPos);
-						this.barriers.add(new Barriers(xPos, yPos, false));
+						this.barriers.add(new Barriers(xPos, yPos, false, rotNull));
 						
 						
 						
@@ -87,8 +90,48 @@ public class FileReader {
 						yPos = 0;
 						yPos = heightSection * yPosIteration;
 						System.out.println("Create Electric Barrier at " + xPos + " " + yPos);
-						this.barriers.add(new Barriers(xPos, yPos, true));
+						this.barriers.add(new Barriers(xPos, yPos, true, rotNull));
 					}
+					
+				
+				if (line.charAt(i) == 'R') {
+					if (line.charAt(0) == '1') {
+						lineNum = '1';
+						heightSection = 1;
+						
+					}else if(line.charAt(0) == '2') {
+						lineNum = '2';
+						heightSection = 2;
+					}else {
+						lineNum = '3';
+						heightSection = 3;
+					}
+					xPos = 0;
+					xPos = i * 50;
+					yPos = 0;
+					yPos = heightSection * yPosIteration;
+					System.out.println("Create Electric Barrier at " + xPos + " " + yPos);
+					this.barriers.add(new Barriers(xPos, yPos, false, rotR));
+				}
+				if (line.charAt(i) == 'L') {
+					if (line.charAt(0) == '1') {
+						lineNum = '1';
+						heightSection = 1;
+						
+					}else if(line.charAt(0) == '2') {
+						lineNum = '2';
+						heightSection = 2;
+					}else {
+						lineNum = '3';
+						heightSection = 3;
+					}
+					xPos = 0;
+					xPos = i * 50;
+					yPos = 0;
+					yPos = heightSection * yPosIteration;
+					System.out.println("Create Electric Barrier at " + xPos + " " + yPos);
+					this.barriers.add(new Barriers(xPos, yPos, false, rotL));
+				}
 					
 					if (line.charAt(i) == 'M') {
 						if (line.charAt(0) == '1') {

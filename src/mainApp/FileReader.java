@@ -42,7 +42,7 @@ public class FileReader {
 						yPos = 0;
 						yPos = heightSection * yPosIteration;
 						System.out.println("Create coin! at " + xPos + " " + yPos);
-						this.coins.add(new Coin(xPos, yPos));
+						//this.coins.add(new Coin(xPos, yPos));
 					}
 					
 					if (line.charAt(i) == 'B') {
@@ -64,6 +64,8 @@ public class FileReader {
 
 						System.out.println("Create Barrier at " + xPos + " " + yPos);
 						this.barriers.add(new Barriers(xPos, yPos, false));
+						
+						
 						
 
 					}
@@ -98,10 +100,15 @@ public class FileReader {
 			System.err.println("File was not found: " + filename);
 			e.printStackTrace();
 		}
+		
+		
+		GameComponent gameComp = new GameComponent();
+		gameComp.listsIn(barriers, coins);
+		
 		 MainApp mainApp = new MainApp();
 		 mainApp.setVisible(true);
-		 mainApp.runApp();
-
+		 mainApp.runApp(gameComp);
+		
 	}
 
 }

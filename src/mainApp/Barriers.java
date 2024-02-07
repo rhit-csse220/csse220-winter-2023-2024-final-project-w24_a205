@@ -2,6 +2,7 @@ package mainApp;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 public class Barriers {
 	
@@ -17,7 +18,7 @@ public class Barriers {
 		
 	}
 	
-	public void paintBarrier(Graphics g2) {
+	public void drawOn(Graphics2D g2) {
 		if (this.isElectric==true) {
 			g2.setColor(Color.RED);
 		} else {

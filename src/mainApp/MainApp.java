@@ -41,12 +41,25 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 
 	
 
-	public void runApp() {
+	public void runApp(GameComponent gComp) {
 		
+		JFrame frame = new JFrame();
+
+		frame.setSize(1550, 300);
+		frame.setTitle("Game Time!!");
+
+		frame.add(gComp); 
+
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+		
+		
+		
+		/*
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
-
+	*/
 		boxX = 50;
 		boxY = FRAME_HEIGHT - BOX_SIZE - 30; // Initial Y position at the bottom
 
@@ -55,6 +68,7 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 
 		addKeyListener(this);
 		setFocusable(true);
+		
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -196,6 +210,20 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 
 	public static void main(String[] args) {
 
+	/*
+		JFrame frame = new JFrame();
+
+		frame.setSize(1550, 300);
+		frame.setTitle("Game Time!!");
+
+		frame.add(new GameComponent()); 
+
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+		*/
+		
+		
+
 		SwingUtilities.invokeLater(() -> {
 			
 			try {
@@ -206,6 +234,8 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 			}
 
 		});
-	} // main
+		
+		
+	} 
 
 }

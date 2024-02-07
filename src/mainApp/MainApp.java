@@ -35,9 +35,10 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 	private int boxX;
 	private int boxY;
 	private boolean isJumping;
+	private GameComponent gComp;
 
 	Timer timer = new Timer(20, this);
-
+	
 
 	
 
@@ -61,6 +62,7 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 	*/
+		this.gComp = gComp; 
 		boxX = 50;
 		boxY = FRAME_HEIGHT - BOX_SIZE - 30; // Initial Y position at the bottom
 
@@ -86,7 +88,7 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 				boxY += 3; // Adjust this value for fall speed
 			}
 		}
-
+		
 		// Ensure the box stays within the frame
 		if (boxX > FRAME_WIDTH - BOX_SIZE) {
 			boxX = FRAME_WIDTH - BOX_SIZE;
@@ -100,9 +102,11 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 		if (boxY < 0 + BOX_SIZE) {
 			boxY = 0 + BOX_SIZE;
 		}
-
+		gComp.playerYPos(boxY);
 		repaint();
 	}
+	
+	
 
 	public void paint(Graphics g) {
 		super.paint(g);

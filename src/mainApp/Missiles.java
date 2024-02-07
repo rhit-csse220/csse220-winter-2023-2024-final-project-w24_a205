@@ -8,18 +8,25 @@ public class Missiles {
 	
 	private static final int MISSILE_SIZE = 20;
 	private int missileX, missileY, initialX;
-	private double xVelocity = 20;
+	private double xVelocity = 10;
+	private double yVelocity = 5;
+	private boolean isTracking = false;
+	private int playerY;
 	
-	public Missiles(int missileX, int missileY) {
+	
+	public Missiles(int missileX, int missileY, boolean isTracking) {
 		this.missileX=missileX;
 		this.missileY=missileY;
 		this.initialX=missileX;
+		this.isTracking=isTracking;
 	}
 	
 	public boolean move() {
 		missileX -= this.xVelocity;
 		return this.missileX < 0;
-	}
+			
+		}
+	
 	
 	public void resetPosition() {
 		
@@ -32,6 +39,21 @@ public class Missiles {
 	public int getY() {
 		return this.missileY;
 	}
+	
+	public void playerY(int playerY) {
+		this.playerY = playerY;
+		if(isTracking==true) {
+			if(missileY > playerY) {
+				missileY -= this.yVelocity;
+			}else if(missileY < playerY){
+				
+					missileY += this.yVelocity;
+			}
+		
+		}
+	
+	}
+	
 	
 	public void drawOn(Graphics2D g2) {
 		g2.setColor(Color.RED);

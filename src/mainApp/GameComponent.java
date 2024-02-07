@@ -8,8 +8,8 @@ import javax.swing.JComponent;
 
 public class GameComponent extends JComponent {
 	
-	
-	int barX, barY;
+	private int playerYPos;
+	private int barX, barY;
 	Boolean isElectric;
 	private ArrayList<Barriers> barriers=new ArrayList<>();
 	private ArrayList<Coin> coins=new ArrayList<>();
@@ -23,14 +23,19 @@ public class GameComponent extends JComponent {
 	
 	public void updateMissiles() {
 		for(Missiles missile: this.missiles) {
+			missile.playerY(playerYPos);
 			boolean reset = missile.move();
 			if (reset) {
 				int missileX=this.getX()+missile.getX();
 				int missileY=missile.getY();
 				this.missiles.remove(missile);
-				this.missiles.add(new Missiles(missileX, missileY));
+				this.missiles.add(new Missiles(missileX, missileY, false));
 			}
 		}
+	}
+	public void playerYPos(int yPos) {
+		this.playerYPos = yPos;
+		
 	}
 
 	

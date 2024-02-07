@@ -45,7 +45,7 @@ public void readFile(String filename) throws InvalidLevelFormatException {
 						xPos = i * 50;
 						yPos = 0;
 						yPos = heightSection * yPosIteration;
-						System.out.println("Create coin! at " + xPos + " " + yPos);
+						
 						this.coins.add(new Coin(xPos, yPos));
 					}
 					
@@ -66,7 +66,7 @@ public void readFile(String filename) throws InvalidLevelFormatException {
 							yPos = 0;
 							yPos = heightSection * yPosIteration;
 
-						System.out.println("Create Barrier at " + xPos + " " + yPos);
+						
 						this.barriers.add(new Barriers(xPos, yPos, false, rotNull));
 						
 						
@@ -89,7 +89,7 @@ public void readFile(String filename) throws InvalidLevelFormatException {
 						xPos = i * 50;
 						yPos = 0;
 						yPos = heightSection * yPosIteration;
-						System.out.println("Create Electric Barrier at " + xPos + " " + yPos);
+						
 						this.barriers.add(new Barriers(xPos, yPos, true, rotNull));
 					}
 					
@@ -110,7 +110,7 @@ public void readFile(String filename) throws InvalidLevelFormatException {
 					xPos = i * 50;
 					yPos = 0;
 					yPos = heightSection * yPosIteration;
-					System.out.println("Create Electric Barrier at " + xPos + " " + yPos);
+					
 					this.barriers.add(new Barriers(xPos, yPos, false, rotR));
 				}
 				if (line.charAt(i) == 'L') {
@@ -129,7 +129,7 @@ public void readFile(String filename) throws InvalidLevelFormatException {
 					xPos = i * 50;
 					yPos = 0;
 					yPos = heightSection * yPosIteration;
-					System.out.println("Create Electric Barrier at " + xPos + " " + yPos);
+				
 					this.barriers.add(new Barriers(xPos, yPos, false, rotL));
 				}
 					
@@ -149,8 +149,27 @@ public void readFile(String filename) throws InvalidLevelFormatException {
 						xPos = i * 50;
 						yPos = 0;
 						yPos = heightSection * yPosIteration;
-						System.out.println("Create Missile at " + xPos + " " + yPos);
-						this.missiles.add(new Missiles(xPos, yPos));
+						
+						this.missiles.add(new Missiles(xPos, yPos, false));
+					}
+					if (line.charAt(i) == 'm') {
+						if (line.charAt(0) == '1') {
+							lineNum = '1';
+							heightSection = 1;
+							
+						}else if(line.charAt(0) == '2') {
+							lineNum = '2';
+							heightSection = 2;
+						}else {
+							lineNum = '3';
+							heightSection = 3;
+						}
+						xPos = 0;
+						xPos = i * 50;
+						yPos = 0;
+						yPos = heightSection * yPosIteration;
+						
+						this.missiles.add(new Missiles(xPos, yPos, true));
 					}
 				}
 				if (line.length() > 31) {

@@ -20,7 +20,7 @@ public class Barriers {
 		this.barrierY=barrierY;
 		this.isElectric=isElectric;
 		this.rotation = rotation; 
-		System.out.println("I am a barrier! " + barrierX + " " + barrierY);
+		
 		
 	}
 	

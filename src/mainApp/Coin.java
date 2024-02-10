@@ -3,7 +3,7 @@ package mainApp;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-public class Coin {
+public class Coin extends Collidable {
 	
 	private static final int COIN_SIZE = 20;
 	private int coinX, coinY;

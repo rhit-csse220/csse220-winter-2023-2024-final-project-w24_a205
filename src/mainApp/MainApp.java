@@ -31,6 +31,7 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 	private static final int MOVE_SPEED = 5;
 	private static final int JUMP_HEIGHT = 40;
 	private boolean isPaused = false;
+	private String level;
 
 	private int boxX;
 	private int boxY;
@@ -42,7 +43,9 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 
 	
 
-	public void runApp(GameComponent gComp) {
+	public void runApp(GameComponent gComp, String filename) {
+		
+		this.level = filename; 
 		
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -92,15 +95,35 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 		// Ensure the box stays within the frame
 		if (boxX > FRAME_WIDTH - BOX_SIZE) {
 			boxX = FRAME_WIDTH - BOX_SIZE;
-			System.out.println("End Of Level!!");
+			
+			
+			if (this.level.equals("levels/level2.txt")) {
+				System.out.println("Game Complete!!");
 			System.exit(0);
+			
+		}else {
+			System.out.println("End Of Level, next level!!");
+			boxX = 0;
+			timer.stop();
+			
+			
+
+			try {
+				FileReader fileReader2 = new FileReader();
+				fileReader2.readFile("levels/level2.txt");
+				setVisible(false);
+			} catch (InvalidLevelFormatException e1) {
+
+				e1.printStackTrace();
+			}
+		}
 		}
 
 		if (boxY > FRAME_HEIGHT - BOX_SIZE - 30) {
 			boxY = FRAME_HEIGHT - BOX_SIZE - 30;
 		}
 		if (boxY < 0 + BOX_SIZE) {
-			boxY = 0 + BOX_SIZE;
+                    			boxY = 0 + BOX_SIZE;
 		}
 		gComp.playerYPos(boxY);
 		repaint();

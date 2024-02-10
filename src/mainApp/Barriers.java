@@ -7,10 +7,10 @@ import java.awt.Polygon;
 import java.awt.Rectangle;
 import java.math.*;
 
-public class Barriers {
+public class Barriers extends Collidable{
 	
-	private static final int STANDARD_BAR_WIDTH = 100;
-	private static final int STANDARD_BAR_HEIGHT = 30;
+	private static final int STANDARD_BAR_WIDTH = 70;
+	private static final int STANDARD_BAR_HEIGHT = 10;
 	private int barrierX, barrierY;
 	private boolean isElectric;
 	private char rotation;

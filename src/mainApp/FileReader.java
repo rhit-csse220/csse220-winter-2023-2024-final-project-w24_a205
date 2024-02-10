@@ -190,7 +190,7 @@ public void readFile(String filename) throws InvalidLevelFormatException {
 		
 		 MainApp mainApp = new MainApp();
 		 mainApp.setVisible(true);
-		 mainApp.runApp(gameComp);
+		 mainApp.runApp(gameComp, filename);
 		
 	}
 

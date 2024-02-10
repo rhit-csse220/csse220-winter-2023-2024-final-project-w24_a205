@@ -4,12 +4,12 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 
-public class Missiles {
+public class Missiles extends Collidable {
 	
 	private static final int MISSILE_SIZE = 20;
 	private int missileX, missileY, initialX;
-	private double xVelocity = 10;
-	private double yVelocity = 5;
+	private double xVelocity = 7;
+	private double yVelocity = 2;
 	private boolean isTracking = false;
 	private int playerY;
 	

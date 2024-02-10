@@ -28,8 +28,8 @@ public class GameComponent extends JComponent {
 			if (reset) {
 				int missileX=this.getX()+missile.getX();
 				int missileY=missile.getY();
-				this.missiles.remove(missile);
-				this.missiles.add(new Missiles(missileX, missileY, false));
+				//this.missiles.remove(missile);
+				//this.missiles.add(new Missiles(missileX, missileY, false));
 			}
 		}
 	}

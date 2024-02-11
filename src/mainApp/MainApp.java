@@ -32,6 +32,7 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 	private static final int JUMP_HEIGHT = 40;
 	private boolean isPaused = false;
 	private String level;
+	
 
 	private int boxX;
 	private int boxY;
@@ -92,11 +93,17 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 			}
 		}
 		for (Barriers barrier: this.barriers) {
-			if (boxX > barrier.objectX && boxY < barrier.objectY) {
-				boxX = barrier.objectX;
-				boxY = barrier.objectY; 
+			if (boxX -5 > barrier.objectX) {
+				barrier.playerHasPassed = true;
+			}
+			if (boxX + BOX_SIZE > barrier.objectX && boxY > barrier.objectY 
+					&& barrier.playerHasPassed ==false) {
+				
+				boxX = barrier.objectX - BOX_SIZE;
 				
 				
+				      
+				 
 			}
 		}
 		

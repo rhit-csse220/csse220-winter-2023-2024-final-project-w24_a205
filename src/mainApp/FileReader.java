@@ -112,7 +112,7 @@ public void readFile(String filename) throws InvalidLevelFormatException {
 					yPos = 0;
 					yPos = heightSection * yPosIteration;
 					
-					this.barriers.add(new Barriers(xPos, yPos, false, rotR));
+					this.barriers.add(new Barriers(xPos, yPos, true, rotR));
 				}
 				if (line.charAt(i) == 'L') {
 					if (line.charAt(0) == '1') {

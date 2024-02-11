@@ -7,6 +7,7 @@ boolean isDeadly = false;
 int barrierHeight;
 int barrierWidth;
 int coinSize;
+boolean playerHasPassed = false;
 
 
 

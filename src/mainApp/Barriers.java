@@ -24,6 +24,7 @@ public class Barriers extends Collidable{
 		this.objectY = barrierY;
 		this.barrierHeight = STANDARD_BAR_HEIGHT;
 		this.barrierWidth = STANDARD_BAR_WIDTH;
+		this.isDeadly = isElectric;
 		
 		
 	}

@@ -20,6 +20,10 @@ public class Barriers extends Collidable{
 		this.barrierY=barrierY;
 		this.isElectric=isElectric;
 		this.rotation = rotation; 
+		this.objectX = barrierX;
+		this.objectY = barrierY;
+		this.barrierHeight = STANDARD_BAR_HEIGHT;
+		this.barrierWidth = STANDARD_BAR_WIDTH;
 		
 		
 	}

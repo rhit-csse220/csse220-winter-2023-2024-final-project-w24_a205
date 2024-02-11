@@ -37,14 +37,14 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 	private int boxY;
 	private boolean isJumping;
 	private GameComponent gComp;
-
+	private ArrayList<Barriers> barriers=new ArrayList<>();
 	Timer timer = new Timer(20, this);
 	
-
+	
 	
 
-	public void runApp(GameComponent gComp, String filename) {
-		
+	public void runApp(GameComponent gComp, String filename, ArrayList<Barriers> bars) {
+		this.barriers = bars;
 		this.level = filename; 
 		
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
@@ -89,6 +89,14 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 			// Otherwise, simulate gravity by moving the box downward
 			if (boxY < FRAME_HEIGHT - BOX_SIZE - 30) {
 				boxY += 3; // Adjust this value for fall speed
+			}
+		}
+		for (Barriers barrier: this.barriers) {
+			if (boxX > barrier.objectX && boxY < barrier.objectY) {
+				boxX = barrier.objectX;
+				boxY = barrier.objectY; 
+				
+				
 			}
 		}
 		

@@ -6,6 +6,7 @@ import java.awt.geom.Rectangle2D;
 
 public class Missiles extends Collidable {
 	
+	
 	private static final int MISSILE_SIZE = 20;
 	private int missileX, missileY, initialX;
 	private double xVelocity = 7;
@@ -14,12 +15,15 @@ public class Missiles extends Collidable {
 	private int playerY;
 	
 	
+	
 	public Missiles(int missileX, int missileY, boolean isTracking) {
 		this.missileX=missileX;
 		this.missileY=missileY;
 		this.initialX=missileX;
 		this.isTracking=isTracking;
-	}
+		
+	
+	}	
 	
 	public boolean move() {
 		missileX -= this.xVelocity;

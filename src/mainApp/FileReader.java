@@ -10,6 +10,7 @@ public class FileReader {
 	private ArrayList<Barriers> barriers=new ArrayList<>();
 	private ArrayList<Coin> coins=new ArrayList<>();
 	private ArrayList<Missiles> missiles=new ArrayList<>();
+	private ArrayList<Collidable> collidables=new ArrayList<>();
 
 public void readFile(String filename) throws InvalidLevelFormatException {
 		
@@ -188,9 +189,10 @@ public void readFile(String filename) throws InvalidLevelFormatException {
 		GameComponent gameComp = new GameComponent();
 		gameComp.listsIn(barriers, coins, missiles);
 		
+		
 		 MainApp mainApp = new MainApp();
 		 mainApp.setVisible(true);
-		 mainApp.runApp(gameComp, filename);
+		 mainApp.runApp(gameComp, filename, barriers);
 		
 	}
 

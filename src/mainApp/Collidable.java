@@ -1,7 +1,19 @@
 package mainApp;
 
-public abstract class Collidable {
-private boolean touchingPlayer;
+public class Collidable {
+boolean touchingPlayer = false;
+int objectX, objectY;
+boolean isDeadly = false;
+int barrierHeight;
+int barrierWidth;
+int coinSize;
+
+
+
+
+
+
+
 
 
 

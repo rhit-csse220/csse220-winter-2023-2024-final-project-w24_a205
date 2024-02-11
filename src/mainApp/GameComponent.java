@@ -31,8 +31,11 @@ public class GameComponent extends JComponent {
 				//this.missiles.remove(missile);
 				//this.missiles.add(new Missiles(missileX, missileY, false));
 			}
+			
 		}
+		
 	}
+	
 	public void playerYPos(int yPos) {
 		this.playerYPos = yPos;
 		
@@ -54,6 +57,7 @@ public class GameComponent extends JComponent {
 		for (int i = 0; i < missiles.size(); i++) {
 			missiles.get(i).drawOn(graphics2);
 		}
+		
 		updateMissiles();
 	}
 	

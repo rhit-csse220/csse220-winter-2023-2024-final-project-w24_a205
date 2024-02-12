@@ -49,6 +49,7 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 		this.level = filename; 
 		
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
+		setTitle("Jetpack Joyride!");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 

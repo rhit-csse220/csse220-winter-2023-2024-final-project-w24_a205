@@ -11,6 +11,7 @@ public class FileReader {
 	private ArrayList<Coin> coins=new ArrayList<>();
 	private ArrayList<Missiles> missiles=new ArrayList<>();
 	private ArrayList<Collidable> collidables=new ArrayList<>();
+	private ArrayList<Hero> hero=new ArrayList<>();
 	private int coinCount;
 
 public void readFile(String filename, int coinCount, int lives) throws InvalidLevelFormatException {
@@ -173,6 +174,25 @@ public void readFile(String filename, int coinCount, int lives) throws InvalidLe
 						
 						this.missiles.add(new Missiles(xPos, yPos, true));
 					}
+					if (line.charAt(i) == 'H') {
+						if (line.charAt(0) == '1') {
+							lineNum = '1';
+							heightSection = 1;
+							
+						}else if(line.charAt(0) == '2') {
+							lineNum = '2';
+							heightSection = 2;
+						}else {
+							lineNum = '3';
+							heightSection = 3;
+						}
+						xPos = 0;
+						xPos = i * 50;
+						yPos = 0;
+						yPos = heightSection * yPosIteration;
+						
+						this.hero.add(new Hero(xPos, yPos));
+					}
 				}
 				if (line.length() > 31) {
 					throw new InvalidLevelFormatException(line.length(), 31);
@@ -188,7 +208,7 @@ public void readFile(String filename, int coinCount, int lives) throws InvalidLe
 		  
 		
 		GameComponent gameComp = new GameComponent();
-		gameComp.listsIn(barriers, coins, missiles);
+		gameComp.listsIn(barriers, coins, missiles, hero);
 		
 		
 		 MainApp mainApp = new MainApp();

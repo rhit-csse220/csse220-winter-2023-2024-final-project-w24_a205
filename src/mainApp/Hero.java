@@ -16,7 +16,7 @@ public class Hero {
 		this.boxY=heroY;
 	}
 	
-	public void paint(Graphics g2) {
+	public void drawOn(Graphics g2) {
 		g2.setColor(Color.BLACK);
 		g2.fillRect(this.boxX, this.boxY, BOX_SIZE, BOX_SIZE);
 	}

@@ -14,11 +14,13 @@ public class GameComponent extends JComponent {
 	private ArrayList<Barriers> barriers=new ArrayList<>();
 	private ArrayList<Coin> coins=new ArrayList<>();
 	private ArrayList<Missiles> missiles=new ArrayList<>();
+	private ArrayList<Hero> hero=new ArrayList<>();
 	
-	public void listsIn(ArrayList<Barriers> bars, ArrayList<Coin> coins, ArrayList<Missiles> missiles) {
+	public void listsIn(ArrayList<Barriers> bars, ArrayList<Coin> coins, ArrayList<Missiles> missiles, ArrayList<Hero> hero) {
 		this.barriers = bars;
 		this.coins = coins;
 		this.missiles=missiles;
+		this.hero=hero;
 	}
 	
 	public void updateMissiles() {
@@ -58,6 +60,9 @@ public class GameComponent extends JComponent {
 		
 		for (int i = 0; i < missiles.size(); i++) {
 			missiles.get(i).drawOn(graphics2);
+		}
+		for (int i = 0; i < hero.size(); i++) {
+			hero.get(i).drawOn(graphics2);
 		}
 		
 		updateMissiles();

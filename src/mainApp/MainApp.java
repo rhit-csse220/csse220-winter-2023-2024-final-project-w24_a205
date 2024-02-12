@@ -94,6 +94,11 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 			}
 		}
 		for (Barriers barrier: this.barriers) {
+			barrier.collision(boxX, boxY);
+		}
+		/*
+		 * for (Barriers barrier: this.barriers) {
+		 
 			if (boxX -5 > barrier.objectX) {
 				barrier.playerHasPassed = true;
 			}
@@ -106,6 +111,7 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 				 
 			}
 		}
+		*/
 		
 		// Ensure the box stays within the frame
 		if (boxX > FRAME_WIDTH - BOX_SIZE) {
@@ -150,6 +156,7 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 		super.paint(g);
 		g.setColor(Color.BLACK);
 		g.fillRect(boxX, boxY, BOX_SIZE, BOX_SIZE);
+	
 
 		g.setColor(Color.DARK_GRAY);
 		g.fillRect(0, 270, 1550, 50);

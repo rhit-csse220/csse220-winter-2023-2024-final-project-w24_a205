@@ -114,8 +114,11 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 				 barrier.playerHasPassed = true;
 			 }
 			
-			if (boxX > barrier.objectX - BOX_SIZE  && boxX  < barrier.objectX + barrier.barrierWidth
-				 && boxY > barrier.objectY && boxY < barrier.objectY + barrier.barrierHeight
+			 
+			 
+					
+			if (boxX + BOX_SIZE > barrier.objectX  && boxX  < barrier.objectX + barrier.barrierWidth
+				 && boxY + BOX_SIZE > barrier.objectY && boxY < barrier.objectY + barrier.barrierHeight
 				&& barrier.playerHasPassed ==false) {
 				if(barrier.isDeadly==true){
 					System.out.println("died to barrier");
@@ -136,8 +139,9 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 					}
 					
 					
-				}
+				}     
 				boxX = barrier.objectX - BOX_SIZE;
+				
 			        
 				  
 			}
@@ -148,8 +152,8 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 		 for (int i = 0; i < this.coins.size();i++) {
 			 
 			 Coin coin = this.coins.get(i);
-			 if(boxX > coin.objectX && boxX < coin.objectX + coin.coinSize
-			) {
+			 if (boxX + BOX_SIZE > coin.objectX  && boxX  < coin.objectX + coin.coinSize
+			 ) {
 				coins.remove(i);
 				this.coinCount++;
 				System.out.println("Coin Collected! You now have " + coinCount + " coins!");

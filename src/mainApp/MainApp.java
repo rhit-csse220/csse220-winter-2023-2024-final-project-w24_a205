@@ -324,7 +324,7 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 		
 		
 
-		SwingUtilities.invokeLater(() -> {
+		 SwingUtilities.invokeLater(() -> {
 			
 			try {
 				FileReader fileReader = new FileReader();

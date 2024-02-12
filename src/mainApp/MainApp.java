@@ -96,8 +96,7 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 			if (boxX -5 > barrier.objectX) {
 				barrier.playerHasPassed = true;
 			}
-			if (boxX + BOX_SIZE > barrier.objectX && boxY > barrier.objectY 
-					&& barrier.playerHasPassed ==false) {
+			if (boxX > barrier.objectX &&  barrier.playerHasPassed ==false) {
 				
 				boxX = barrier.objectX - BOX_SIZE;
 				
@@ -258,4 +257,6 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 		
 	}
 }
+
+
 

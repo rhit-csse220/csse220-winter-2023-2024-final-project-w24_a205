@@ -11,9 +11,10 @@ public class FileReader {
 	private ArrayList<Coin> coins=new ArrayList<>();
 	private ArrayList<Missiles> missiles=new ArrayList<>();
 	private ArrayList<Collidable> collidables=new ArrayList<>();
+	private int coinCount;
 
-public void readFile(String filename) throws InvalidLevelFormatException {
-		
+public void readFile(String filename, int coinCount, int lives) throws InvalidLevelFormatException {
+		this.coinCount = coinCount;
 
 		File file = new File(filename);
 
@@ -184,7 +185,7 @@ public void readFile(String filename) throws InvalidLevelFormatException {
 			System.err.println("File was not found: " + filename);
 			e.printStackTrace();
 		}
-		
+		  
 		
 		GameComponent gameComp = new GameComponent();
 		gameComp.listsIn(barriers, coins, missiles);
@@ -192,7 +193,7 @@ public void readFile(String filename) throws InvalidLevelFormatException {
 		
 		 MainApp mainApp = new MainApp();
 		 mainApp.setVisible(true);
-		 mainApp.runApp(gameComp, filename, barriers);
+		 mainApp.runApp(gameComp, filename, barriers, coins, missiles, coinCount, lives);
 		 
 		
 	}

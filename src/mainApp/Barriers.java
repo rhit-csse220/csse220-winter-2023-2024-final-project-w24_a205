@@ -9,8 +9,8 @@ import java.math.*;
 
 public class Barriers extends Collidable{
 	
-	private static final int STANDARD_BAR_WIDTH = 70;
-	private static final int STANDARD_BAR_HEIGHT = 10;
+	private static final int STANDARD_BAR_WIDTH = 10       ;
+	private static final int STANDARD_BAR_HEIGHT = 40;
 	private int barrierX, barrierY;
 	private boolean isElectric;
 	private char rotation;
@@ -28,7 +28,7 @@ public class Barriers extends Collidable{
 		
 		
 	}
-	
+	  
 	
 	public void drawOn(Graphics2D g2) {
 		if (this.isElectric==true) {

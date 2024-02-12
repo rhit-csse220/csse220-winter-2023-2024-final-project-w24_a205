@@ -22,17 +22,19 @@ public class GameComponent extends JComponent {
 	}
 	
 	public void updateMissiles() {
-		for(Missiles missile: this.missiles) {
+		 for (int i = 0; i < this.missiles.size();i++) { 
+			 Missiles missile = this.missiles.get(i);
+		 
 			missile.playerY(playerYPos);
 			boolean reset = missile.move();
 			if (reset) {
 				int missileX=this.getX()+missile.getX();
 				int missileY=missile.getY();
-				//this.missiles.remove(missile);
-				//this.missiles.add(new Missiles(missileX, missileY, false));
+				this.missiles.remove(missile);
+				this.missiles.add(new Missiles(missileX, missileY, true));
 			}
 			
-		}
+		 }
 		
 	}
 	

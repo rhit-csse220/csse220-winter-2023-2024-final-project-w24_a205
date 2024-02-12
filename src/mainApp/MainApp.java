@@ -33,20 +33,30 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 	private boolean isPaused = false;
 	private String level;
 	
-
+	private int coinCount;
+	private int lives;
 	private int boxX;
 	private int boxY;
 	private boolean isJumping;
 	private GameComponent gComp;
 	private ArrayList<Barriers> barriers=new ArrayList<>();
+	private ArrayList<Coin> coins=new ArrayList<>();
+	private ArrayList<Missiles> missiles=new ArrayList<>();
 	Timer timer = new Timer(20, this);
 	
 	
 	
 
-	public void runApp(GameComponent gComp, String filename, ArrayList<Barriers> bars) {
+	public void runApp(GameComponent gComp, String filename, 
+			ArrayList<Barriers> bars, ArrayList<Coin> coins, ArrayList<Missiles> missiles,
+			int coinCount, int lives) {
 		this.barriers = bars;
+		this.coins = coins;
+		this.missiles=missiles;
 		this.level = filename; 
+		this.coinCount = coinCount;
+		this.lives = lives;
+		System.out.println("You have " + lives + " lives remaining");
 		
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		setTitle("Jetpack Joyride!");
@@ -78,6 +88,10 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 		setFocusable(true);
 		
 	}
+	public void playerPos(int xPos, int yPos) {
+		this.boxX = xPos;
+		this.boxY = yPos; 
+	}
 
 	public void actionPerformed(ActionEvent e) {
 		// Move the box to the right
@@ -93,25 +107,80 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 				boxY += 3; // Adjust this value for fall speed
 			}
 		}
-		for (Barriers barrier: this.barriers) {
-			barrier.collision(boxX, boxY);
-		}
-		/*
-		 * for (Barriers barrier: this.barriers) {
-		 
-			if (boxX -5 > barrier.objectX) {
-				barrier.playerHasPassed = true;
-			}
-			if (boxX > barrier.objectX &&  barrier.playerHasPassed ==false) {
-				
+		
+		
+		 for (Barriers barrier: this.barriers) {
+			 if (boxX > barrier.objectX + 10) {
+				 barrier.playerHasPassed = true;
+			 }
+			
+			if (boxX > barrier.objectX - BOX_SIZE  && boxX  < barrier.objectX + barrier.barrierWidth
+				 && boxY > barrier.objectY && boxY < barrier.objectY + barrier.barrierHeight
+				&& barrier.playerHasPassed ==false) {
+				if(barrier.isDeadly==true){
+					System.out.println("died to barrier");
+					lives = lives -1;
+					boxX = 0;
+					timer.stop();
+					if (lives == 0) {
+						System.out.println("Game Over");
+						System.exit(0);
+					}
+					try {
+						FileReader fileReader2 = new FileReader();
+						fileReader2.readFile(level, 0, lives);
+						setVisible(false);
+					} catch (InvalidLevelFormatException e1) {
+
+						e1.printStackTrace();
+					}
+					
+					
+				}
 				boxX = barrier.objectX - BOX_SIZE;
-				
-				
-				      
-				 
+			        
+				  
 			}
-		}
-		*/
+		 }
+		 
+		 
+		 
+		 for (int i = 0; i < this.coins.size();i++) {
+			 
+			 Coin coin = this.coins.get(i);
+			 if(boxX > coin.objectX && boxX < coin.objectX + coin.coinSize
+			) {
+				coins.remove(i);
+				this.coinCount++;
+				System.out.println("Coin Collected! You now have " + coinCount + " coins!");
+			 }
+			 i++;
+		 }
+		 
+		 for (int i = 0; i < this.missiles.size();i++) {
+			 Missiles missile = this.missiles.get(i);
+			 if (missile.missileX < boxX + BOX_SIZE && missile.missileX > boxX
+					 && missile.missileY > boxY && missile.missileY < boxY + BOX_SIZE ) {
+				 System.out.println("died to missile");
+					lives = lives -1;
+					boxX = 0;
+					timer.stop();
+					if (lives == 0) {
+						System.out.println("Game Over");
+						System.exit(0);
+					}
+					try {
+						FileReader fileReader2 = new FileReader();
+						fileReader2.readFile(level, 0, lives);
+						setVisible(false);
+					} catch (InvalidLevelFormatException e1) {
+
+						e1.printStackTrace();
+					}
+			 }
+		 }
+		 
+		 
 		
 		// Ensure the box stays within the frame
 		if (boxX > FRAME_WIDTH - BOX_SIZE) {
@@ -131,7 +200,7 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 
 			try {
 				FileReader fileReader2 = new FileReader();
-				fileReader2.readFile("levels/level2.txt");
+				fileReader2.readFile("levels/level2.txt", coinCount, lives);
 				setVisible(false);
 			} catch (InvalidLevelFormatException e1) {
 
@@ -181,7 +250,7 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 
 			try {
 				FileReader fileReader2 = new FileReader();
-				fileReader2.readFile("levels/level2.txt");
+				fileReader2.readFile("levels/level2.txt", 0, 5);
 				setVisible(false);
 			} catch (InvalidLevelFormatException e1) {
 
@@ -197,7 +266,7 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 
 			try {
 				FileReader fileReader = new FileReader();
-				fileReader.readFile("levels/level1.txt");
+				fileReader.readFile("levels/level1.txt", 0, 5);
 				setVisible(false);
 				  
 			} catch (InvalidLevelFormatException e1) {
@@ -255,7 +324,7 @@ public class MainApp extends JFrame implements ActionListener, KeyListener {
 			
 			try {
 				FileReader fileReader = new FileReader();
-				fileReader.readFile("levels/level1.txt");
+				fileReader.readFile("levels/level1.txt", 0, 5);
 			} catch (InvalidLevelFormatException e) {
 				e.printStackTrace();
 			}

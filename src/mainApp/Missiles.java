@@ -7,8 +7,8 @@ import java.awt.geom.Rectangle2D;
 public class Missiles extends Collidable {
 	
 	
-	private static final int MISSILE_SIZE = 20;
-	private int missileX, missileY, initialX;
+	public static final int MISSILE_SIZE = 20;
+	public int missileX, missileY, initialX;
 	private double xVelocity = 7;
 	private double yVelocity = 2;
 	private boolean isTracking = false;
@@ -28,6 +28,7 @@ public class Missiles extends Collidable {
 	public boolean move() {
 		missileX -= this.xVelocity;
 		return this.missileX < 0;
+		
 			
 		}
 	
@@ -58,7 +59,7 @@ public class Missiles extends Collidable {
 	
 	}
 	
-	
+	  
 	public void drawOn(Graphics2D g2) {
 		g2.setColor(Color.RED);
 		Rectangle2D.Double missile=new Rectangle2D.Double(this.missileX, this.missileY, MISSILE_SIZE, MISSILE_SIZE);

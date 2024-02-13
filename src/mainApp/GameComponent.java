@@ -22,6 +22,10 @@ public class GameComponent extends JComponent {
 	private ArrayList<Barriers> barriers=new ArrayList<>();
 	private ArrayList<Coin> coins=new ArrayList<>();
 	
+	private int lives;
+	private int coinCount;
+	
+	
 	private int numTicks;
 	private static final int BOX_SIZE = 20;
 	private static final int BOX_X = 10;
@@ -36,10 +40,12 @@ public class GameComponent extends JComponent {
 		this.isJumping = isJumping; 
 	}
 	
-	public GameComponent(String filename) {
+	public GameComponent(String filename, int coins, int lives) {
 		this.box = new Rectangle2D.Double(BOX_X, BOX_Y , BOX_SIZE, BOX_SIZE);
 		this.dx = STARTING_DX;
 		this.filename = filename;
+		this.coinCount = coins;
+		this.lives = lives;
 		
 		}
 	public void mainIn(MainApp main) {
@@ -76,6 +82,8 @@ public class GameComponent extends JComponent {
 				
 				coinsToRemove.add(coin);
 				System.out.println("coin Collected");
+				this.coinCount++;
+				
 				
 			}
 			
@@ -113,7 +121,7 @@ public class GameComponent extends JComponent {
 				this.main.endLevel();
 			try {
 				FileReader fileReader = new FileReader();
-				fileReader.readFile("levels/level2.txt", 0, 5);
+				fileReader.readFile("levels/level2.txt", coinCount, lives);
 			} catch (InvalidLevelFormatException e) {
 				e.printStackTrace();
 			}
@@ -167,14 +175,15 @@ public class GameComponent extends JComponent {
 		// or use an indexed loop and iterate backwards.
 		for (int i = 0; i < this.missiles.size();i++) { 
 			 Missiles missile = this.missiles.get(i);
+			 missile.playerY(this.box.y);
 			
 			boolean hasLeftScreen = missile.fly();
 			if (hasLeftScreen) {
 				missiles.remove(missile);
-				
+				boolean missileTracking = missile.isTracking;
 				int missileY=missile.objectY;
 				this.missiles.remove(missile);
-				this.missiles.add(new Missiles(missileY));
+				this.missiles.add(new Missiles(missileY, missileTracking));
 				
 				
 			}

@@ -11,18 +11,22 @@ public class Missiles extends Collidable {
 	private double x;
 	private double y;
 	private double xVelocity = -10;
-
+	private double yVelocity = 2;
+	boolean isTracking;
+	private double playerY;
 	private static final double SIZE = 10.0;
 	
-	public Missiles(int ypos) {
+	public Missiles(int ypos, boolean isTracking) {
 		this.x = 1500;
 		this.y = ypos;
 		this.objectY = ypos;
+		this.isTracking = isTracking;
 	}
 	
 	
 	public boolean fly() {
 		this.x += this.xVelocity;
+		
 		return this.x < 0;
 		
 	}
@@ -33,6 +37,19 @@ public class Missiles extends Collidable {
 				new Ellipse2D.Double(this.x, this.y, SIZE, SIZE);
 		g.fill(missile);
 		g.setColor(Color.BLACK);
+	}
+	
+	public void playerY(double playerY) {
+		this.playerY = playerY;
+		if(isTracking==true) {
+			if(this.y > playerY) {
+				this.y -= this.yVelocity;
+			}else if(this.y < playerY){
+				
+					this.y += this.yVelocity;
+			}
+		
+	}
 	}
 	
 	

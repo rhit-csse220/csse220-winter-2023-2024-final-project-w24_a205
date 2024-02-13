@@ -29,17 +29,34 @@ public class MainApp extends JFrame {
 	private boolean isJumping;
 	private Timer timer;
 	JFrame frame;
-
+	JButton livesButton;
+	JButton coinsButton;
+	JPanel panel;
+	private int lives;
+	private int coins;
 	private GameComponent component;
 
-	public void MainApp(GameComponent component) {
+	public void MainApp(GameComponent component, int coins, int lives) {
 		this.component = component;
+		this.lives = lives;
+		this.coins = coins;
 		JFrame frame = new JFrame("Arcade Game");
 		frame.setSize(1550, 300);
-	
-		JButton button = new JButton("Jump");
 		
-		frame.add(button, BorderLayout.SOUTH);
+		
+		JPanel panel = new JPanel();
+		
+		JButton jumpButton = new JButton("Jump");
+		
+		JButton livesButton = new JButton ("Lives: " + lives );
+		
+		JButton coinsButton = new JButton ("Coins: " + coins);
+		
+		panel.add(jumpButton);
+		panel.add(livesButton);
+		panel.add(coinsButton);
+		
+		frame.add(panel, BorderLayout.SOUTH);
 		frame.add(component, BorderLayout.CENTER);
 
 		GameAdvanceListener advanceListener = new GameAdvanceListener(component);
@@ -49,7 +66,7 @@ public class MainApp extends JFrame {
 		this.timer = timer;
 		timer.start();
 		
-		button.addActionListener(new ActionListener() {
+		jumpButton.addActionListener(new ActionListener() {
 			@Override 
 			public void actionPerformed(ActionEvent e) {
 				isJumping = true;
@@ -71,6 +88,7 @@ public class MainApp extends JFrame {
 		
 		
 	}
+	
 
 	/*
 	 * private static final int FRAME_WIDTH = 1550; private static final int

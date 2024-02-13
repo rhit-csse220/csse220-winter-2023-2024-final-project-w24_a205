@@ -12,10 +12,10 @@ public class FileReader {
 	private ArrayList<Missiles> missiles=new ArrayList<>();
 	private ArrayList<Collidable> collidables=new ArrayList<>();
 
-	private int coinCount;
+
 
 public void readFile(String filename, int coinCount, int lives) throws InvalidLevelFormatException {
-		this.coinCount = coinCount;
+		
 
 		File file = new File(filename);
 
@@ -153,7 +153,7 @@ public void readFile(String filename, int coinCount, int lives) throws InvalidLe
 						yPos = 0;
 						yPos = heightSection * yPosIteration;
 						
-						this.missiles.add(new Missiles(yPos));
+						this.missiles.add(new Missiles(yPos,false));
 					}
 					if (line.charAt(i) == 'm') {
 						if (line.charAt(0) == '1') {
@@ -172,7 +172,7 @@ public void readFile(String filename, int coinCount, int lives) throws InvalidLe
 						yPos = 0;
 						yPos = heightSection * yPosIteration;
 						
-						//this.missiles.add(new Missiles(xPos, yPos, true));
+						this.missiles.add(new Missiles(yPos, true));
 					}
 					
 				}
@@ -187,12 +187,12 @@ public void readFile(String filename, int coinCount, int lives) throws InvalidLe
 			System.err.println("File was not found: " + filename);
 			e.printStackTrace();
 		}
-		GameComponent component = new GameComponent(filename);
+		GameComponent component = new GameComponent(filename, coinCount, lives);
 		component.listsIn(barriers, coins, missiles);
 		
 		
 		MainApp main = new MainApp();
-		main.MainApp(component);
+		main.MainApp(component, coinCount, lives);
 		
 		component.mainIn(main);
 		

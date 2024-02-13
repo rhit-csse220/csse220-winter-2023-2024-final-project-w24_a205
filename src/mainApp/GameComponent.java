@@ -120,18 +120,19 @@ public class GameComponent extends JComponent {
 			this.box.x = this.getWidth() - box.getWidth();
 			
 			System.out.println("end of level!!!");
-			
-			if(level == 0) {
+			int lvl = level +1;
+			if(lvl > 4) {
+				System.exit(0);
+				System.out.println("Game complete!");
+			}
 				this.main.endLevel();
 			try {
 				FileReader fileReader = new FileReader();
-				fileReader.readFile(1, coinCount, lives);
+				fileReader.readFile(lvl, coinCount, lives);
 			} catch (InvalidLevelFormatException e) {
 				e.printStackTrace();
 			}
-			}else {
-				System.exit(0);
-			}
+			
 			
 			
 			

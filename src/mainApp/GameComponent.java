@@ -31,7 +31,7 @@ public class GameComponent extends JComponent {
 	private static final int BOX_X = 10;
 	private static final int BOX_Y = 180;
 	private static final int JUMP_HEIGHT = 20;
-	private String filename;
+	private int level;
 	private MainApp main;
 	
 	private boolean isJumping;
@@ -40,10 +40,10 @@ public class GameComponent extends JComponent {
 		this.isJumping = isJumping; 
 	}
 	
-	public GameComponent(String filename, int coins, int lives) {
+	public GameComponent(int level, int coins, int lives) {
 		this.box = new Rectangle2D.Double(BOX_X, BOX_Y , BOX_SIZE, BOX_SIZE);
 		this.dx = STARTING_DX;
-		this.filename = filename;
+		this.level = level;
 		this.coinCount = coins;
 		this.lives = lives;
 		
@@ -121,11 +121,11 @@ public class GameComponent extends JComponent {
 			
 			System.out.println("end of level!!!");
 			
-			if(filename == "levels/level1.txt") {
+			if(level == 0) {
 				this.main.endLevel();
 			try {
 				FileReader fileReader = new FileReader();
-				fileReader.readFile("levels/level2.txt", coinCount, lives);
+				fileReader.readFile(1, coinCount, lives);
 			} catch (InvalidLevelFormatException e) {
 				e.printStackTrace();
 			}
@@ -155,7 +155,7 @@ public class GameComponent extends JComponent {
 				this.main.endLevel();
 				try {
 					FileReader fileReader = new FileReader();
-					fileReader.readFile(filename, coinCount, lives);
+					fileReader.readFile(level, coinCount, lives);
 				} catch (InvalidLevelFormatException e) {
 					e.printStackTrace();
 				}
@@ -201,7 +201,7 @@ public class GameComponent extends JComponent {
 				this.main.endLevel();
 				try {
 					FileReader fileReader = new FileReader();
-					fileReader.readFile(filename, coinCount, lives);
+					fileReader.readFile(level, coinCount, lives);
 				} catch (InvalidLevelFormatException e) {
 					e.printStackTrace();
 				}

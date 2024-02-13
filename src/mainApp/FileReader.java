@@ -3,6 +3,7 @@ package mainApp;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 
@@ -11,13 +12,27 @@ public class FileReader {
 	private ArrayList<Coin> coins=new ArrayList<>();
 	private ArrayList<Missiles> missiles=new ArrayList<>();
 	private ArrayList<Collidable> collidables=new ArrayList<>();
+	HashMap<String, String> levels = new HashMap<String, String>();
+	private String filename;
+	 
 
 
 
-public void readFile(String filename, int coinCount, int lives) throws InvalidLevelFormatException {
-		
+public void readFile(int level, int coinCount, int lives) throws InvalidLevelFormatException {
+	
+	 ArrayList<String> levels =new ArrayList<String>();
+	
+	 levels.add("levels/level1.txt");
+	 levels.add("levels/level2.txt");
+	 levels.add("levels/level3.txt");
+	 levels.add("levels/level4.txt");
+	 levels.add("levels/level5.txt");
+	
 
-		File file = new File(filename);
+	
+	this.filename = levels.get(level);
+
+		File file = new File(levels.get(level));
 
 		try {
 			Scanner scanner = new Scanner(file);
@@ -187,12 +202,12 @@ public void readFile(String filename, int coinCount, int lives) throws InvalidLe
 			System.err.println("File was not found: " + filename);
 			e.printStackTrace();
 		}
-		GameComponent component = new GameComponent(filename, coinCount, lives);
+		GameComponent component = new GameComponent(level, coinCount, lives);
 		component.listsIn(barriers, coins, missiles);
 		
 		
 		MainApp main = new MainApp();
-		main.MainApp(component, coinCount, lives);
+		main.MainApp(component, coinCount, lives, level);
 		
 		component.mainIn(main);
 		

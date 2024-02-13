@@ -36,8 +36,9 @@ public class MainApp extends JFrame {
 	private int lives;
 	private int coins;
 	private GameComponent component;
+	private int level;
 
-	public void MainApp(GameComponent component, int coins, int lives) {
+	public void MainApp(GameComponent component, int coins, int lives, int level) {
 		this.component = component;
 		this.lives = lives;
 		this.coins = coins;
@@ -58,11 +59,14 @@ public class MainApp extends JFrame {
 		
 		JButton livesButton = new JButton ("Lives left: " + lives );
 		
+		JButton levelButton = new JButton ("Level: " + (level + 1) );
+		
 		JButton coinsButton = new JButton ("Coins: " + coins);
 		
 		panel.add(jumpButton);
 		panel.add(livesButton);
 		panel.add(coinsButton);
+		panel.add(levelButton);
 		
 		frame.add(panel, BorderLayout.SOUTH);
 		
@@ -98,11 +102,41 @@ public class MainApp extends JFrame {
 					isJumping = true;
 					component.jumpUpdate(isJumping);
 				}
+				
+				
 				if (e.getKeyCode() == KeyEvent.VK_U) {
 					System.out.println("UP A LEVEL");
+					int lvl = level +1;
+					if(lvl > 4) {
+						lvl = 4;
+					}
+					try {
+						FileReader fileReader = new FileReader();
+						fileReader.readFile(lvl, 0, 5);
+					} catch (InvalidLevelFormatException e1) {
+						e1.printStackTrace();
+					}
+					timer.stop();
+					frame.setVisible(false);
+					
 				}
+				
+				
 				if (e.getKeyCode() == KeyEvent.VK_D) {
 					System.out.println("DOWN A LEVEL");
+					int lvl = level -1;
+					if(lvl < 0) {
+						lvl = 0;
+					}
+					
+					try {
+						FileReader fileReader = new FileReader();
+						fileReader.readFile(lvl, 0, 5);
+					} catch (InvalidLevelFormatException e1) {
+						e1.printStackTrace();
+					}
+					timer.stop();
+					frame.setVisible(false);
 					
 					
 				}if (e.getKeyCode() == KeyEvent.VK_P) {
@@ -323,7 +357,7 @@ public class MainApp extends JFrame {
 
 		try {
 			FileReader fileReader = new FileReader();
-			fileReader.readFile("levels/level1.txt", 0, 5);
+			fileReader.readFile(0, 0, 5);
 		} catch (InvalidLevelFormatException e) {
 			e.printStackTrace();
 		}

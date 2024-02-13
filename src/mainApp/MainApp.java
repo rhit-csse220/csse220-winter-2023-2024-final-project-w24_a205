@@ -32,6 +32,7 @@ public class MainApp extends JFrame {
 	JButton livesButton;
 	JButton coinsButton;
 	JPanel panel;
+	private boolean isPaused = false;
 	private int lives;
 	private int coins;
 	private GameComponent component;
@@ -64,6 +65,7 @@ public class MainApp extends JFrame {
 		panel.add(coinsButton);
 		
 		frame.add(panel, BorderLayout.SOUTH);
+		
 		frame.add(component, BorderLayout.CENTER);
 
 		GameAdvanceListener advanceListener = new GameAdvanceListener(component);
@@ -72,7 +74,7 @@ public class MainApp extends JFrame {
 		Timer timer = new Timer(DELAY, advanceListener);
 		this.timer = timer;
 		timer.start();
-		
+		/*
 		jumpButton.addActionListener(new ActionListener() {
 			@Override 
 			public void actionPerformed(ActionEvent e) {
@@ -80,23 +82,60 @@ public class MainApp extends JFrame {
 				 
 				component.jumpUpdate(isJumping);
 			}
+		
 		});
+		*/
+		jumpButton.addKeyListener(new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+				
+			}
 
-	
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+					isJumping = true;
+					component.jumpUpdate(isJumping);
+				}
+				if (e.getKeyCode() == KeyEvent.VK_U) {
+					System.out.println("UP A LEVEL");
+				}
+				if (e.getKeyCode() == KeyEvent.VK_D) {
+					System.out.println("DOWN A LEVEL");
+					
+					
+				}if (e.getKeyCode() == KeyEvent.VK_P) {
+					{ if (isPaused == true) { 
+						isPaused = false;
+						timer.start(); 
+						}else { 
+						isPaused = true;
+						timer.stop(); } }
+						}
+				
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				
+				
+			}
+		});
+		
  
 		frame.setVisible(true);
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.frame = frame;
 	}
-	
+
 	public void endLevel() {
 		timer.stop();
 		frame.setVisible(false);
-		
-		
+
 	}
-	
 
 	/*
 	 * private static final int FRAME_WIDTH = 1550; private static final int

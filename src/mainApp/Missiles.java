@@ -2,11 +2,78 @@ package mainApp;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 
 public class Missiles extends Collidable {
 	
 	
+	private double x;
+	private double y;
+	private double xVelocity = -10;
+
+	private static final double SIZE = 10.0;
+	
+	public Missiles(int ypos) {
+		this.x = 1500;
+		this.y = ypos;
+		this.objectY = ypos;
+	}
+	
+	
+	public boolean fly() {
+		this.x += this.xVelocity;
+		return this.x < 0;
+		
+	}
+	
+	public void drawOn(Graphics2D g) {
+		g.setColor(Color.RED);
+		Ellipse2D.Double missile = 
+				new Ellipse2D.Double(this.x, this.y, SIZE, SIZE);
+		g.fill(missile);
+		g.setColor(Color.BLACK);
+	}
+	
+	
+	//Use to detect if the missiles hit the box
+	//Refactor into Collidable at some point 
+	public boolean insideBox(Rectangle2D.Double b) {
+		return b.intersects(x,y, SIZE, SIZE);
+	}
+	
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*
 	public static final int MISSILE_SIZE = 20;
 	public int missileX, missileY, initialX;
 	private double xVelocity = 7;
@@ -65,5 +132,6 @@ public class Missiles extends Collidable {
 		Rectangle2D.Double missile=new Rectangle2D.Double(this.missileX, this.missileY, MISSILE_SIZE, MISSILE_SIZE);
 		g2.fill(missile);
 	}
+	*/
 
 }

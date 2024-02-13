@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
 import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
 import java.math.*;
 
 public class Barriers extends Collidable{
@@ -16,6 +17,7 @@ public class Barriers extends Collidable{
 	private char rotation;
 	
 	public Barriers(int barrierX, int barrierY, boolean isElectric, char rotation) {
+		
 		this.barrierX=barrierX;
 		this.barrierY=barrierY;
 		this.isElectric=isElectric;
@@ -27,6 +29,9 @@ public class Barriers extends Collidable{
 		this.isDeadly = isElectric;
 		
 		
+	}
+	public boolean insideBox(Rectangle2D.Double b) {
+		return b.intersects(barrierX,barrierY, STANDARD_BAR_WIDTH, STANDARD_BAR_HEIGHT);
 	}
 	  
 	

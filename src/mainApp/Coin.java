@@ -2,6 +2,8 @@ package mainApp;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
 
 public class Coin extends Collidable {
 	public Color color = Color.yellow;
@@ -18,10 +20,15 @@ public class Coin extends Collidable {
 		this.objectY = coinY;
 		
 	}
-	
+	public boolean insideBox(Rectangle2D.Double b) {
+		return b.intersects(this.coinX, this.coinY, COIN_SIZE, COIN_SIZE);
+	}
 
 	public void drawOn(Graphics2D g2) {
 		g2.setColor(this.color);
-		g2.fillOval(this.coinX, this.coinY, COIN_SIZE, COIN_SIZE);
+		Ellipse2D.Double coin= 
+				new Ellipse2D.Double(this.coinX, this.coinY, COIN_SIZE, COIN_SIZE);
+		g2.fill(coin);
+		
 	}
 }

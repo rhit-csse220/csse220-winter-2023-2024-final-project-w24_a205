@@ -230,7 +230,7 @@ public class GameComponent extends JComponent {
 		super.paintComponent(g);
 	
 		Graphics2D g2 = (Graphics2D)g;
-		
+		g2.fillRect(0,this.getHeight()-20, this.getWidth(), this.getHeight());
 		g2.fill(this.box);
 		
 		for (Missiles missile : this.missiles) {

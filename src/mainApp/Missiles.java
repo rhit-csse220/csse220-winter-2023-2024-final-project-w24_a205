@@ -10,8 +10,8 @@ public class Missiles extends Collidable {
 	
 	private double x;
 	private double y;
-	private double xVelocity = -10;
-	private double yVelocity = 2;
+	private double xVelocity = -20;
+	private double yVelocity = 1;
 	boolean isTracking;
 	private double playerY;
 	private static final double SIZE = 10.0;

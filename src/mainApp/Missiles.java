@@ -26,7 +26,6 @@ public class Missiles extends Collidable {
 	
 	public boolean fly() {
 		this.x += this.xVelocity;
-		
 		return this.x < 0;
 		
 	}

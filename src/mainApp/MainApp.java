@@ -40,6 +40,13 @@ public class MainApp extends JFrame {
 		this.component = component;
 		this.lives = lives;
 		this.coins = coins;
+		
+		if(lives < 0) {
+			
+			System.out.println("Game over: out of lives");
+			System.exit(0);
+			
+		}
 		JFrame frame = new JFrame("Arcade Game");
 		frame.setSize(1550, 300);
 		
@@ -48,7 +55,7 @@ public class MainApp extends JFrame {
 		
 		JButton jumpButton = new JButton("Jump");
 		
-		JButton livesButton = new JButton ("Lives: " + lives );
+		JButton livesButton = new JButton ("Lives left: " + lives );
 		
 		JButton coinsButton = new JButton ("Coins: " + coins);
 		
@@ -78,6 +85,7 @@ public class MainApp extends JFrame {
 	
  
 		frame.setVisible(true);
+		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.frame = frame;
 	}

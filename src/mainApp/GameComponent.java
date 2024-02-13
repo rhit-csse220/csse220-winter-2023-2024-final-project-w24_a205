@@ -149,8 +149,16 @@ public class GameComponent extends JComponent {
 			this.box.x = barrier.objectX - BOX_SIZE;
 			this.dx = 1;
 			if(barrier.isDeadly) {
-				System.exit(0);
+				
 				System.out.println("Died to barrier!");
+				lives = lives -1;
+				this.main.endLevel();
+				try {
+					FileReader fileReader = new FileReader();
+					fileReader.readFile(filename, coinCount, lives);
+				} catch (InvalidLevelFormatException e) {
+					e.printStackTrace();
+				}
 			}
 			
 		
@@ -181,6 +189,25 @@ public class GameComponent extends JComponent {
 			 Missiles missile = this.missiles.get(i);
 			 missile.playerY(this.box.y);
 			
+			
+			boolean hitBox = missile.insideBox( this.box );
+			if (hitBox ) {
+				
+				missilesToRemove.add(missile);
+				System.out.println("died to missile");
+				
+				
+				lives = lives -1;
+				this.main.endLevel();
+				try {
+					FileReader fileReader = new FileReader();
+					fileReader.readFile(filename, coinCount, lives);
+				} catch (InvalidLevelFormatException e) {
+					e.printStackTrace();
+				}
+				
+				
+			}
 			boolean hasLeftScreen = missile.fly();
 			if (hasLeftScreen) {
 				missiles.remove(missile);
@@ -189,16 +216,6 @@ public class GameComponent extends JComponent {
 				this.missiles.remove(missile);
 				this.missiles.add(new Missiles(missileY, missileTracking));
 				
-				
-			}
-			
-			
-			boolean hitBox = missile.insideBox( this.box );
-			if (hitBox ) {
-				
-				missilesToRemove.add(missile);
-				System.out.println("died to missile");
-				System.exit(0);
 				
 			}
 			

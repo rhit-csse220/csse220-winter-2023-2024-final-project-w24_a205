@@ -165,6 +165,10 @@ public class GameComponent extends JComponent {
 		// Keep the box from going off the screen
 		if (this.box.x > this.getWidth() - box.getWidth()) {
 			this.box.x = this.getWidth() - box.getWidth();
+			if(level==5) {
+				System.out.println("Bonus complete!");
+				System.exit(0);
+			}
 
 			System.out.println("end of level!!!");
 			int lvl = level + 1;

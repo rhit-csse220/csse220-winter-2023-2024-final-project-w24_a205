@@ -1,7 +1,5 @@
 package mainApp;
 
-
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -21,6 +19,7 @@ public class GameComponent extends JComponent {
 	private ArrayList<Barriers> barriers=new ArrayList<>();
 	private ArrayList<Coin> coins=new ArrayList<>();
 	private ArrayList<GravityPowerUp> gravPowerUps=new ArrayList<>();
+	private List<JetPackEffects> jetEffects = new ArrayList<>();
 	
 	private int lives;
 	private int coinCount;
@@ -68,6 +67,7 @@ public class GameComponent extends JComponent {
 		updateMissiles();
 		updateCoins();
 		updateGravPowerUps();
+		updateJetpackEffects();
 		this.numTicks++;
 	}
 	public void listsIn(ArrayList<Barriers> bars, ArrayList<Coin> coins, ArrayList<Missiles> missiles,
@@ -262,6 +262,24 @@ public class GameComponent extends JComponent {
 			this.missiles.remove(missile);
 		}
 	}
+	private void updateJetpackEffects() {
+		
+		if (Math.random() < 0.5) {
+			this.jetEffects.add(new JetPackEffects(this.BOX_SIZE, this.box.x, this.box.y));
+		}
+		
+		List<JetPackEffects> effectsToRemove = new ArrayList<>();
+		for (JetPackEffects effects : this.jetEffects) {
+			boolean shouldRemove = effects.fall(this.getHeight(), this.gravReverse);
+			if (shouldRemove ) {
+				effectsToRemove.add(effects);
+			}
+	
+		}
+		for (JetPackEffects effects: effectsToRemove) {
+			this.jetEffects.remove(effects);
+		}
+	}
 	
 	@Override
 	protected void paintComponent(Graphics g) {
@@ -285,8 +303,11 @@ public class GameComponent extends JComponent {
 		for (GravityPowerUp powerUp: this.gravPowerUps) {
 			powerUp.drawOn(g2);
 		}
+		for (JetPackEffects effects : this.jetEffects) {
+			effects.drawOn(g2);
 		
 		}
 	}
 
+}
 }

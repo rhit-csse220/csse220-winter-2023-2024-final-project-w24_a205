@@ -173,7 +173,7 @@ public class GameComponent extends JComponent {
 					this.main.endLevel(); 
 					try {
 						FileReader fileReader = new FileReader();
-						fileReader.readFile(1, coinCount, lives);
+						fileReader.readFile(5, coinCount, lives);
 					} catch (InvalidLevelFormatException e) {
 						e.printStackTrace();
 					}
@@ -291,7 +291,7 @@ public class GameComponent extends JComponent {
 
 		for (Missiles missile : this.missiles) {
 			missile.drawOn(g2);
-
+		}
 			for (Barriers bar : this.barriers) {
 				bar.drawOn(g2);
 
@@ -306,7 +306,7 @@ public class GameComponent extends JComponent {
 				effects.drawOn(g2);
 
 			}
-		}
+		
 
 	}
 }

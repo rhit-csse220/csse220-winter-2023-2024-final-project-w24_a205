@@ -44,6 +44,7 @@ public class FileReader {
 				String line = scanner.nextLine();
 
 				for (int i = 0; i < line.length(); i++) {
+					char test=line.charAt(i);
 					if (line.charAt(i) == 'C') {
 						if (line.charAt(0) == '1') {
 							lineNum = '1';

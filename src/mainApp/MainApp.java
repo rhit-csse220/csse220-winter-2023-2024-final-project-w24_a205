@@ -58,6 +58,7 @@ public class MainApp extends JFrame {
 		JButton jumpButton = new JButton("Game On!");
 
 		JButton pauseButton = new JButton("Pause = 'P'");
+		JButton exitButton = new JButton("Exit to Menu = 'E'");
 
 		JButton slowMoButton = new JButton("Toggle Slow Mo = 'S'");
 
@@ -75,6 +76,7 @@ public class MainApp extends JFrame {
 		panel.add(slowMoButton);
 		panel.add(upLevelButton);
 		panel.add(downLevelButton);
+		panel.add(exitButton);
 		panel.add(livesButton);
 		panel.add(coinsButton);
 		panel.add(levelButton);
@@ -101,6 +103,12 @@ public class MainApp extends JFrame {
 				if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 					isJumping = true;
 					component.jumpUpdate(isJumping);
+				}
+				if (e.getKeyCode() == KeyEvent.VK_E) {
+					mainApp.MainApp.main(null);
+					timer.stop();
+					frame.setVisible(false);
+					
 				}
 
 				if (e.getKeyCode() == KeyEvent.VK_U) {
@@ -186,7 +194,7 @@ public class MainApp extends JFrame {
 
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Game Menu");
-		frame.setSize(500, 500);
+		frame.setSize(1550, 300 );
 
 		JPanel panel = new JPanel();
 
@@ -220,7 +228,7 @@ public class MainApp extends JFrame {
 				if (e.getKeyCode() == KeyEvent.VK_E) {
 					System.exit(0);
 				}
-
+				
 			}
 
 			@Override
@@ -234,10 +242,6 @@ public class MainApp extends JFrame {
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		/*
-		 * try { FileReader fileReader = new FileReader(); fileReader.readFile(0, 0, 5);
-		 * } catch (InvalidLevelFormatException e) { e.printStackTrace(); }
-		 */
 
 	}
 }

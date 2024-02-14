@@ -30,7 +30,7 @@ public class GameComponent extends JComponent {
 	private static final int BOX_SIZE = 20;
 	private static final int BOX_X = 10;
 	private static final int BOX_Y = 180;
-	private static final int JUMP_HEIGHT = 20;
+	private static final int JUMP_HEIGHT = 25;
 	private int level;
 	private MainApp main;
 	
@@ -106,7 +106,7 @@ public class GameComponent extends JComponent {
 		} else {
 			// Otherwise, simulate gravity by moving the box downward
 			if (box.y < this.getHeight() - BOX_SIZE-20) {
-				box.y += 3; // Adjust this value for fall speed
+				box.y += 5 ; // Adjust this value for fall speed
 			}
 		}
 		

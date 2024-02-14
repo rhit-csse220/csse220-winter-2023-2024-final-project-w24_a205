@@ -10,8 +10,8 @@ import java.math.*;
 
 public class Barriers extends Collidable{
 	
-	private static final int STANDARD_BAR_WIDTH = 10       ;
-	private static final int STANDARD_BAR_HEIGHT = 40;
+	private static final int STANDARD_BAR_WIDTH = 15       ;
+	private static final int STANDARD_BAR_HEIGHT = 55;
 	private int barrierX, barrierY;
 	private boolean isElectric;
 	private char rotation;

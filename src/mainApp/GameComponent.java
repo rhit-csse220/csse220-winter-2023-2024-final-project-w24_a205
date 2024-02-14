@@ -20,6 +20,7 @@ public class GameComponent extends JComponent {
 	private List<Missiles> missiles = new ArrayList<>();
 	private ArrayList<Barriers> barriers=new ArrayList<>();
 	private ArrayList<Coin> coins=new ArrayList<>();
+	private ArrayList<GravityPowerUp> gravPowerUps=new ArrayList<>();
 	
 	private int lives;
 	private int coinCount;
@@ -34,9 +35,18 @@ public class GameComponent extends JComponent {
 	private MainApp main;
 	
 	private boolean isJumping;
+	private boolean gravReverse;
 	
 	public void jumpUpdate(boolean isJumping) {
 		this.isJumping = isJumping; 
+	}
+	public void gravityReversed() {
+		if(this.gravReverse == true) {
+			this.gravReverse = false;
+		}else {
+			this.gravReverse = true; 
+		}
+		
 	}
 	
 	public GameComponent(int level, int coins, int lives) {
@@ -57,12 +67,15 @@ public class GameComponent extends JComponent {
 		updateBarriers();
 		updateMissiles();
 		updateCoins();
+		updateGravPowerUps();
 		this.numTicks++;
 	}
-	public void listsIn(ArrayList<Barriers> bars, ArrayList<Coin> coins, ArrayList<Missiles> missiles) {
+	public void listsIn(ArrayList<Barriers> bars, ArrayList<Coin> coins, ArrayList<Missiles> missiles,
+			ArrayList<GravityPowerUp> gravPowerUps) {
 		this.barriers = bars;
 		this.coins = coins;
 		this.missiles=missiles;
+		this.gravPowerUps = gravPowerUps;
 		
 	}
 	
@@ -92,6 +105,24 @@ public class GameComponent extends JComponent {
 		}
 		
 	}
+	public void updateGravPowerUps() {
+		List<GravityPowerUp>  gravPUpsToRemove= new ArrayList<>();
+		for (GravityPowerUp powerUp : this.gravPowerUps) {
+		boolean hitBox = powerUp.insideBox( this.box );
+		if (hitBox ) {
+			
+			gravPUpsToRemove.add(powerUp);
+			gravityReversed();
+			System.out.println("Gravity Reversed!");
+			
+		}
+		
+	}
+	for (GravityPowerUp powerUp : gravPUpsToRemove) {
+		this.gravPowerUps.remove(powerUp);
+	}
+	
+}
 	
 	public void updateBox() {
 		
@@ -99,6 +130,8 @@ public class GameComponent extends JComponent {
 		if (dx == 1) {
 			dx = 10;
 		}
+		
+		if(gravReverse == false) {
 		if (isJumping) {
 			box.y -= JUMP_HEIGHT;
 			isJumping = false; // Stop jumping after one jump
@@ -108,10 +141,27 @@ public class GameComponent extends JComponent {
 				box.y += 4 ; // Adjust this value for fall speed
 			}
 		}
-		
 		if (this.box.y < 30) {
 			this.box.y = 30  ;
 		}
+		}
+		
+		if (gravReverse == true) {
+		if (isJumping) {
+			box.y += JUMP_HEIGHT;
+			isJumping = false; // Stop jumping after one jump
+		} else {
+			// Otherwise, simulate gravity by moving the box downward
+			if (box.y > 30) {
+				box.y -= 4 ; // Adjust this value for fall speed
+			}
+		}
+		if (this.box.y > this.getHeight() - BOX_SIZE - 20) {
+			this.box.y =  this.getHeight() - BOX_SIZE - 20 ;
+		}
+		}
+		
+		
 		
 		
 		//Keep the box from going off the screen 
@@ -231,6 +281,9 @@ public class GameComponent extends JComponent {
 		}
 		for (Coin coin: this.coins) {
 			coin.drawOn(g2);
+		}
+		for (GravityPowerUp powerUp: this.gravPowerUps) {
+			powerUp.drawOn(g2);
 		}
 		
 		}

@@ -145,7 +145,9 @@ public class MainApp extends JFrame {
 						timer.start(); 
 						}else { 
 						isPaused = true;
-						timer.stop(); } }
+						timer.stop();
+						
+						} }
 						}
 				
 				

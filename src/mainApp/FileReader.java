@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class FileReader {
 	private ArrayList<Barriers> barriers=new ArrayList<>();
 	private ArrayList<Coin> coins=new ArrayList<>();
+	private ArrayList<GravityPowerUp> gravPowerUps=new ArrayList<>();
 	private ArrayList<Missiles> missiles=new ArrayList<>();
 	private ArrayList<Collidable> collidables=new ArrayList<>();
 	HashMap<String, String> levels = new HashMap<String, String>();
@@ -65,6 +66,24 @@ public void readFile(int level, int coinCount, int lives) throws InvalidLevelFor
 						yPos = heightSection * yPosIteration;
 						
 						this.coins.add(new Coin(xPos, yPos));
+					}
+					if (line.charAt(i) == 'P') {
+						if (line.charAt(0) == '1') {
+							lineNum = '1';
+							heightSection = 1;
+						}else if(line.charAt(0) == '2') {
+							lineNum = '2';
+							heightSection = 2;
+						}else {
+							lineNum = '3';
+							heightSection = 3;
+						}
+						xPos = 0;
+						xPos = i * 50;
+						yPos = 0;
+						yPos = heightSection * yPosIteration;
+						
+						this.gravPowerUps.add(new GravityPowerUp(xPos, yPos));
 					}
 					
 					if (line.charAt(i) == 'B') {
@@ -203,7 +222,7 @@ public void readFile(int level, int coinCount, int lives) throws InvalidLevelFor
 			e.printStackTrace();
 		}
 		GameComponent component = new GameComponent(level, coinCount, lives);
-		component.listsIn(barriers, coins, missiles);
+		component.listsIn(barriers, coins, missiles, gravPowerUps);
 		
 		
 		MainApp main = new MainApp();

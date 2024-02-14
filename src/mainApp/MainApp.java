@@ -222,7 +222,7 @@ public class MainApp extends JFrame {
 					} catch (InvalidLevelFormatException e1) {
 						e1.printStackTrace();
 					}
-					frame.setVisible(false);
+					frame  .setVisible(false);
 
 				}
 				if (e.getKeyCode() == KeyEvent.VK_E) {

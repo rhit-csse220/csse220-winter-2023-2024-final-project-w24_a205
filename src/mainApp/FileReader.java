@@ -6,32 +6,26 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-
 public class FileReader {
-	private ArrayList<Barriers> barriers=new ArrayList<>();
-	private ArrayList<Coin> coins=new ArrayList<>();
-	private ArrayList<GravityPowerUp> gravPowerUps=new ArrayList<>();
-	private ArrayList<Missiles> missiles=new ArrayList<>();
-	private ArrayList<Collidable> collidables=new ArrayList<>();
+	private ArrayList<Barriers> barriers = new ArrayList<>();
+	private ArrayList<Coin> coins = new ArrayList<>();
+	private ArrayList<GravityPowerUp> gravPowerUps = new ArrayList<>();
+	private ArrayList<Missiles> missiles = new ArrayList<>();
+	private ArrayList<Collidable> collidables = new ArrayList<>();
 	HashMap<String, String> levels = new HashMap<String, String>();
 	private String filename;
-	 
 
+	public void readFile(int level, int coinCount, int lives) throws InvalidLevelFormatException {
 
+		ArrayList<String> levels = new ArrayList<String>();
 
-public void readFile(int level, int coinCount, int lives) throws InvalidLevelFormatException {
-	
-	 ArrayList<String> levels =new ArrayList<String>();
-	
-	 levels.add("levels/level1.txt");
-	 levels.add("levels/level2.txt");
-	 levels.add("levels/level3.txt");
-	 levels.add("levels/level4.txt");
-	 levels.add("levels/level5.txt");
-	
+		levels.add("levels/level1.txt");
+		levels.add("levels/level2.txt");
+		levels.add("levels/level3.txt");
+		levels.add("levels/level4.txt");
+		levels.add("levels/level5.txt");
 
-	
-	this.filename = levels.get(level);
+		this.filename = levels.get(level);
 
 		File file = new File(levels.get(level));
 
@@ -39,9 +33,9 @@ public void readFile(int level, int coinCount, int lives) throws InvalidLevelFor
 			Scanner scanner = new Scanner(file);
 			char lineNum = '1';
 			int heightSection = 1;
-			int yPosIteration = 47       ;
-			int yPos; 
-			int xPos; 
+			int yPosIteration = 47;
+			int yPos;
+			int xPos;
 			char rotR = 'R';
 			char rotL = 'L';
 			char rotNull = 'N';
@@ -53,10 +47,10 @@ public void readFile(int level, int coinCount, int lives) throws InvalidLevelFor
 						if (line.charAt(0) == '1') {
 							lineNum = '1';
 							heightSection = 1;
-						}else if(line.charAt(0) == '2') {
+						} else if (line.charAt(0) == '2') {
 							lineNum = '2';
 							heightSection = 2;
-						}else {
+						} else {
 							lineNum = '3';
 							heightSection = 3;
 						}
@@ -64,17 +58,17 @@ public void readFile(int level, int coinCount, int lives) throws InvalidLevelFor
 						xPos = i * 50;
 						yPos = 0;
 						yPos = heightSection * yPosIteration;
-						
+
 						this.coins.add(new Coin(xPos, yPos));
 					}
 					if (line.charAt(i) == 'P') {
 						if (line.charAt(0) == '1') {
 							lineNum = '1';
 							heightSection = 1;
-						}else if(line.charAt(0) == '2') {
+						} else if (line.charAt(0) == '2') {
 							lineNum = '2';
 							heightSection = 2;
-						}else {
+						} else {
 							lineNum = '3';
 							heightSection = 3;
 						}
@@ -82,43 +76,39 @@ public void readFile(int level, int coinCount, int lives) throws InvalidLevelFor
 						xPos = i * 50;
 						yPos = 0;
 						yPos = heightSection * yPosIteration;
-						
+
 						this.gravPowerUps.add(new GravityPowerUp(xPos, yPos));
 					}
-					
-					if (line.charAt(i) == 'B') {
-							if (line.charAt(0) == '1') {
-								lineNum = '1';
-								heightSection = 1;
-								
-							}else if(line.charAt(0) == '2') {
-								lineNum = '2';
-								heightSection = 2;
-							}else {
-								lineNum = '3';
-								heightSection = 3;
-							}
-							xPos = 0;
-							xPos = i * 50;
-							yPos = 0;
-							yPos = heightSection * yPosIteration;
 
-						
+					if (line.charAt(i) == 'B') {
+						if (line.charAt(0) == '1') {
+							lineNum = '1';
+							heightSection = 1;
+
+						} else if (line.charAt(0) == '2') {
+							lineNum = '2';
+							heightSection = 2;
+						} else {
+							lineNum = '3';
+							heightSection = 3;
+						}
+						xPos = 0;
+						xPos = i * 50;
+						yPos = 0;
+						yPos = heightSection * yPosIteration;
+
 						this.barriers.add(new Barriers(xPos, yPos, false, rotNull));
-						
-						
-						
 
 					}
 					if (line.charAt(i) == 'E') {
 						if (line.charAt(0) == '1') {
 							lineNum = '1';
 							heightSection = 1;
-							
-						}else if(line.charAt(0) == '2') {
+
+						} else if (line.charAt(0) == '2') {
 							lineNum = '2';
 							heightSection = 2;
-						}else {
+						} else {
 							lineNum = '3';
 							heightSection = 3;
 						}
@@ -126,59 +116,58 @@ public void readFile(int level, int coinCount, int lives) throws InvalidLevelFor
 						xPos = i * 50;
 						yPos = 0;
 						yPos = heightSection * yPosIteration;
-						
+
 						this.barriers.add(new Barriers(xPos, yPos, true, rotNull));
 					}
-					
-				
-				if (line.charAt(i) == 'R') {
-					if (line.charAt(0) == '1') {
-						lineNum = '1';
-						heightSection = 1;
-						
-					}else if(line.charAt(0) == '2') {
-						lineNum = '2';
-						heightSection = 2;
-					}else {
-						lineNum = '3';
-						heightSection = 3;
+
+					if (line.charAt(i) == 'R') {
+						if (line.charAt(0) == '1') {
+							lineNum = '1';
+							heightSection = 1;
+
+						} else if (line.charAt(0) == '2') {
+							lineNum = '2';
+							heightSection = 2;
+						} else {
+							lineNum = '3';
+							heightSection = 3;
+						}
+						xPos = 0;
+						xPos = i * 50;
+						yPos = 0;
+						yPos = heightSection * yPosIteration;
+
+						this.barriers.add(new Barriers(xPos, yPos, true, rotR));
 					}
-					xPos = 0;
-					xPos = i * 50;
-					yPos = 0;
-					yPos = heightSection * yPosIteration;
-					
-					this.barriers.add(new Barriers(xPos, yPos, true, rotR));
-				}
-				if (line.charAt(i) == 'L') {
-					if (line.charAt(0) == '1') {
-						lineNum = '1';
-						heightSection = 1;
-						
-					}else if(line.charAt(0) == '2') {
-						lineNum = '2';
-						heightSection = 2;
-					}else {
-						lineNum = '3';
-						heightSection = 3;
+					if (line.charAt(i) == 'L') {
+						if (line.charAt(0) == '1') {
+							lineNum = '1';
+							heightSection = 1;
+
+						} else if (line.charAt(0) == '2') {
+							lineNum = '2';
+							heightSection = 2;
+						} else {
+							lineNum = '3';
+							heightSection = 3;
+						}
+						xPos = 0;
+						xPos = i * 50;
+						yPos = 0;
+						yPos = heightSection * yPosIteration;
+
+						this.barriers.add(new Barriers(xPos, yPos, false, rotL));
 					}
-					xPos = 0;
-					xPos = i * 50;
-					yPos = 0;
-					yPos = heightSection * yPosIteration;
-				
-					this.barriers.add(new Barriers(xPos, yPos, false, rotL));
-				}
-					
+
 					if (line.charAt(i) == 'M') {
 						if (line.charAt(0) == '1') {
 							lineNum = '1';
 							heightSection = 1;
-							
-						}else if(line.charAt(0) == '2') {
+
+						} else if (line.charAt(0) == '2') {
 							lineNum = '2';
 							heightSection = 2;
-						}else {
+						} else {
 							lineNum = '3';
 							heightSection = 3;
 						}
@@ -186,18 +175,18 @@ public void readFile(int level, int coinCount, int lives) throws InvalidLevelFor
 						xPos = i * 50;
 						yPos = 0;
 						yPos = heightSection * yPosIteration;
-						
-						this.missiles.add(new Missiles(yPos,false));
+
+						this.missiles.add(new Missiles(yPos, false));
 					}
 					if (line.charAt(i) == 'm') {
 						if (line.charAt(0) == '1') {
 							lineNum = '1';
 							heightSection = 1;
-							
-						}else if(line.charAt(0) == '2') {
+
+						} else if (line.charAt(0) == '2') {
 							lineNum = '2';
 							heightSection = 2;
-						}else {
+						} else {
 							lineNum = '3';
 							heightSection = 3;
 						}
@@ -205,15 +194,14 @@ public void readFile(int level, int coinCount, int lives) throws InvalidLevelFor
 						xPos = i * 50;
 						yPos = 0;
 						yPos = heightSection * yPosIteration;
-						
+
 						this.missiles.add(new Missiles(yPos, true));
 					}
-					
+
 				}
 				if (line.length() > 31) {
 					throw new InvalidLevelFormatException(line.length(), 31);
 				}
-				
 
 			}
 			scanner.close();
@@ -223,15 +211,12 @@ public void readFile(int level, int coinCount, int lives) throws InvalidLevelFor
 		}
 		GameComponent component = new GameComponent(level, coinCount, lives);
 		component.listsIn(barriers, coins, missiles, gravPowerUps);
-		
-		
+
 		MainApp main = new MainApp();
 		main.MainApp(component, coinCount, lives, level);
-		
-		component.mainIn(main);
-		
 
-		
+		component.mainIn(main);
+
 	}
 
 }

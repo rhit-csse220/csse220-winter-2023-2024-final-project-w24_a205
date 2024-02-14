@@ -9,50 +9,46 @@ public class JetPackEffects {
 	private double x;
 	private double y;
 	private double yVelocity = 10;
-	
+
 	private boolean isGravReversed;
-	
 
 	private static final double SIZE = 5.0;
-	
+
 	public JetPackEffects(int range, double playerX, double playerY) {
-		this.x = (Math.random()*range) + playerX;
-		
-		if(this.isGravReversed == true) {
+		this.x = (Math.random() * range) + playerX;
+
+		if (this.isGravReversed == true) {
 			this.y = playerY;
-		}else {
+		} else {
 			this.y = playerY + range;
-			
+
 		}
 	}
 
 	public boolean fall(int bottom, boolean isGravReversed) {
 		int top = bottom - bottom;
 		this.isGravReversed = isGravReversed;
-		if(isGravReversed == false) {
+		if (isGravReversed == false) {
 			this.y += this.yVelocity;
 			return this.y > bottom;
-		}else {
+		} else {
 			this.y -= this.yVelocity;
 			return this.y < top;
 		}
-		
+
 	}
-	
-	
+
 	public void drawOn(Graphics2D g) {
-		int randColor = (int) (Math.random()*2);
+		int randColor = (int) (Math.random() * 2);
 		Color color;
 		if (randColor == 0) {
 			color = Color.ORANGE;
-		}
-		else{
+		} else {
 			color = Color.GRAY;
 		}
-		
+
 		g.setColor(color);
-		Ellipse2D.Double drop = 
-				new Ellipse2D.Double(this.x, this.y, SIZE, SIZE);
+		Ellipse2D.Double drop = new Ellipse2D.Double(this.x, this.y, SIZE, SIZE);
 		g.fill(drop);
 		g.setColor(Color.BLACK);
 	}

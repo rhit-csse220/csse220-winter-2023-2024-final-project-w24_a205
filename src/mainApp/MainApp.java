@@ -218,7 +218,7 @@ public class MainApp extends JFrame {
 				if (e.getKeyCode() == KeyEvent.VK_S) {
 					try {
 						FileReader fileReader = new FileReader();
-						fileReader.readFile(5, 0, 5);
+						fileReader.readFile(0, 0, 5);
 					} catch (InvalidLevelFormatException e1) {
 						e1.printStackTrace();
 					}

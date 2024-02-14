@@ -12,7 +12,7 @@ public class FileReader {
 	private ArrayList<GravityPowerUp> gravPowerUps = new ArrayList<>();
 	private ArrayList<Missiles> missiles = new ArrayList<>();
 	private ArrayList<Collidable> collidables = new ArrayList<>();
-	HashMap<String, String> levels = new HashMap<String, String>();
+	
 	private String filename;
 
 	public void readFile(int level, int coinCount, int lives) throws InvalidLevelFormatException {

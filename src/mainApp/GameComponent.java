@@ -173,7 +173,7 @@ public class GameComponent extends JComponent {
 					this.main.endLevel(); 
 					try {
 						FileReader fileReader = new FileReader();
-						fileReader.readFile(1, coinCount, lives);
+						fileReader.readFile(5, coinCount, lives);
 					} catch (InvalidLevelFormatException e) {
 						e.printStackTrace();
 					}
@@ -181,7 +181,7 @@ public class GameComponent extends JComponent {
 					System.out.println("Game complete!");
 					System.exit(0);
 				}
-			}
+			}else {
 			this.main.endLevel();
 			try {
 				FileReader fileReader = new FileReader();
@@ -189,8 +189,9 @@ public class GameComponent extends JComponent {
 			} catch (InvalidLevelFormatException e) {
 				e.printStackTrace();
 			}
+			}
 
-		} else if (this.box.x < 0) {
+		}   if (this.box.x < 0) {
 			this.box.x = 0;
 		}
 	}

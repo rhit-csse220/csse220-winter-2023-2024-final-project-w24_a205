@@ -24,6 +24,7 @@ public class FileReader {
 		levels.add("levels/level3.txt");
 		levels.add("levels/level4.txt");
 		levels.add("levels/level5.txt");
+		levels.add("levels/BONUSLEVEL.txt");
 
 		this.filename = levels.get(level);
 

@@ -1,6 +1,6 @@
 package mainApp;
 
-public abstract class Collidable {
+abstract class Collidable {
 	boolean touchingPlayer = false;
 	int objectX, objectY;
 	boolean isDeadly = false;

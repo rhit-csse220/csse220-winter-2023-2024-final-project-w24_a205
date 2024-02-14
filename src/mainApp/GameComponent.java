@@ -196,7 +196,7 @@ public class GameComponent extends JComponent {
 		
 		boolean hitBox = barrier.insideBox( this.box );
 		if(hitBox) {
-			System.out.println("Collision");
+			
 			this.box.x = barrier.objectX - BOX_SIZE;
 			this.dx = 1;
 			if(barrier.isDeadly) {

@@ -9,7 +9,7 @@ public class GravityPowerUp extends Collidable {
 
 public Color color = Color.MAGENTA;
 	
-	private static final int GRAV_POWER_UP_SIZE = 20;
+	private static final int GRAV_POWER_UP_SIZE = 10;
 	private int gpX, gpY;
 	
 	

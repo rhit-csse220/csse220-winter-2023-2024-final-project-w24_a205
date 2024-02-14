@@ -66,9 +66,12 @@ public class MainApp extends JFrame {
 		JButton downLevelButton = new JButton("DownLevel = 'D'");
 
 		JButton livesButton = new JButton("Lives left: " + lives);
-
+		
 		JButton levelButton = new JButton("Level: " + (level + 1));
-
+		
+		if (level == 5) {
+		levelButton.setText("Bonus Level!");
+		}
 		JButton coinsButton = new JButton("Coins: " + coins);
 
 		panel.add(jumpButton);
@@ -114,8 +117,8 @@ public class MainApp extends JFrame {
 				if (e.getKeyCode() == KeyEvent.VK_U) {
 					System.out.println("UP A LEVEL");
 					int lvl = level + 1;
-					if (lvl > 4) {
-						lvl = 4;
+					if (lvl > 5) {
+						lvl = 5;
 					}
 					try {
 						FileReader fileReader = new FileReader();

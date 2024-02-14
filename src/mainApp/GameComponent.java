@@ -61,7 +61,6 @@ public class GameComponent extends JComponent {
 	}
 
 	public void updateState() {
-		
 		updateBox();
 		updateBarriers();
 		updateMissiles();
@@ -69,6 +68,7 @@ public class GameComponent extends JComponent {
 		updateGravPowerUps();
 		updateJetpackEffects();
 		this.numTicks++;
+		
 	}
 	public void listsIn(ArrayList<Barriers> bars, ArrayList<Coin> coins, ArrayList<Missiles> missiles,
 			ArrayList<GravityPowerUp> gravPowerUps) {
@@ -78,7 +78,7 @@ public class GameComponent extends JComponent {
 		this.gravPowerUps = gravPowerUps;
 		
 	}
-	
+
 	
 	public void drawScreen() {
 		this.repaint();

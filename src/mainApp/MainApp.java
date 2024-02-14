@@ -37,7 +37,11 @@ public class MainApp extends JFrame {
 	private int coins;
 	private GameComponent component;
 	private int level;
-
+	private boolean isInSlowMo;
+	
+	
+	
+	
 	public void MainApp(GameComponent component, int coins, int lives, int level) {
 		this.component = component;
 		this.lives = lives;
@@ -59,6 +63,8 @@ public class MainApp extends JFrame {
 		
 		JButton pauseButton = new JButton("Pause = 'P'");
 		
+		JButton slowMoButton = new JButton("Toggle Slow Mo = 'S'");
+		
 		JButton upLevelButton = new JButton("UpLevel = 'U'");
 		JButton downLevelButton = new JButton("DownLevel = 'D'");
 		
@@ -68,8 +74,9 @@ public class MainApp extends JFrame {
 		
 		JButton coinsButton = new JButton ("Coins: " + coins);
 		
-		panel.add(jumpButton);
+		panel.add(jumpButton); 
 		panel.add(pauseButton);
+		panel.add(slowMoButton);
 		panel.add(upLevelButton);
 		panel.add(downLevelButton);
 		panel.add(livesButton);
@@ -98,6 +105,8 @@ public class MainApp extends JFrame {
 		});
 		*/
 		jumpButton.addKeyListener(new KeyListener() {
+		
+
 			@Override
 			public void keyTyped(KeyEvent e) {
 				
@@ -156,7 +165,18 @@ public class MainApp extends JFrame {
 						timer.stop();
 						
 						} }
-						}
+					
+				}if (e.getKeyCode() == KeyEvent.VK_S) {
+					{ if (isInSlowMo == true) { 
+						isInSlowMo = false;
+						timer.setDelay(DELAY);
+						}else { 
+						isInSlowMo = true;
+						timer.setDelay(100);
+						
+						} }
+		
+			}
 				
 				
 			}
@@ -174,6 +194,7 @@ public class MainApp extends JFrame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.frame = frame;
 	}
+	
 
 	public void endLevel() {
 		timer.stop();

@@ -38,7 +38,7 @@ public void readFile(int level, int coinCount, int lives) throws InvalidLevelFor
 			Scanner scanner = new Scanner(file);
 			char lineNum = '1';
 			int heightSection = 1;
-			int yPosIteration = 50;
+			int yPosIteration = 47       ;
 			int yPos; 
 			int xPos; 
 			char rotR = 'R';
@@ -194,7 +194,7 @@ public void readFile(int level, int coinCount, int lives) throws InvalidLevelFor
 				if (line.length() > 31) {
 					throw new InvalidLevelFormatException(line.length(), 31);
 				}
-				// elementsConfiguration = elementsConfiguration.concat(line);
+				
 
 			}
 			scanner.close();
@@ -211,17 +211,7 @@ public void readFile(int level, int coinCount, int lives) throws InvalidLevelFor
 		
 		component.mainIn(main);
 		
-		
-	/*
-		GameComponent gameComp = new GameComponent();
-		gameComp.listsIn(barriers, coins, missiles, hero);
-		
-		
-		
-		 MainApp mainApp = new MainApp();
-		 mainApp.setVisible(true);
-		 mainApp.runApp(gameComp, filename, barriers, coins, missiles, coinCount, lives);
-		 */
+
 		
 	}
 

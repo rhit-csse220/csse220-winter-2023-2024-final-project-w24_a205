@@ -13,8 +13,7 @@ import java.util.List;
 import javax.swing.JComponent;
 
 public class GameComponent extends JComponent {
-	// Here is the game state. In a bigger game, this would live
-	// in another class like Level.
+	
 	private Rectangle2D.Double box;
 	private int STARTING_DX = 10;
 	private int dx;
@@ -30,7 +29,7 @@ public class GameComponent extends JComponent {
 	private static final int BOX_SIZE = 20;
 	private static final int BOX_X = 10;
 	private static final int BOX_Y = 180;
-	private static final int JUMP_HEIGHT = 25;
+	private static final int JUMP_HEIGHT = 20  ;
 	private int level;
 	private MainApp main;
 	
@@ -106,12 +105,12 @@ public class GameComponent extends JComponent {
 		} else {
 			// Otherwise, simulate gravity by moving the box downward
 			if (box.y < this.getHeight() - BOX_SIZE-20) {
-				box.y += 5 ; // Adjust this value for fall speed
+				box.y += 4 ; // Adjust this value for fall speed
 			}
 		}
 		
-		if (this.box.y < 0) {
-			this.box.y = 0;
+		if (this.box.y < 30) {
+			this.box.y = 30  ;
 		}
 		
 		
@@ -122,8 +121,9 @@ public class GameComponent extends JComponent {
 			System.out.println("end of level!!!");
 			int lvl = level +1;
 			if(lvl > 4) {
-				System.exit(0);
 				System.out.println("Game complete!");
+				System.exit(0);
+			
 			}
 				this.main.endLevel();
 			try {
@@ -168,24 +168,11 @@ public class GameComponent extends JComponent {
 		}
 	}
 	private void updateMissiles() {
-		/*if (Math.random() < 0.5) {
-			this.missiles.add(new Missiles(this.getHeight() ));
-		}
-		*/
 		
-		// Alternatively, we could use the number of ticks to get more regular rain.
-		//if (this.numTicks % 2 == 0) {
-		//	this.raindrops.add(new Raindrop(this.getWidth()));
-		//}
 		
 		List<Missiles> missilesToRemove = new ArrayList<>();
 		
-		// Any drops that fall off the bottom of the 
-		// screen should be removed. Removing within the foreach
-		// loop gives a concurrent modification exception.
-		// We can make a list of ones to remove (which I think is most general), 
-		// or use an iterator,
-		// or use an indexed loop and iterate backwards.
+		
 		for (int i = 0; i < this.missiles.size();i++) { 
 			 Missiles missile = this.missiles.get(i);
 			 missile.playerY(this.box.y);
@@ -232,9 +219,10 @@ public class GameComponent extends JComponent {
 	
 		Graphics2D g2 = (Graphics2D)g;
 		g2.fillRect(0,this.getHeight()-20, this.getWidth(), this.getHeight());
+		g2.fillRect(0,0, this.getWidth(), 30);
 		g2.fill(this.box);
 		
-		for (Missiles missile : this.missiles) {
+		for (Missiles missile : this.missiles) { 
 			missile.drawOn(g2);
 			
 		for (Barriers bar: this.barriers) {
@@ -247,97 +235,5 @@ public class GameComponent extends JComponent {
 		
 		}
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	/*
-	private int playerYPos;
-	private int barX, barY;
-	Boolean isElectric;
-	private ArrayList<Barriers> barriers=new ArrayList<>();
-	private ArrayList<Coin> coins=new ArrayList<>();
-	private ArrayList<Missiles> missiles=new ArrayList<>();
-	private ArrayList<Hero> hero=new ArrayList<>();
-	
-	public void listsIn(ArrayList<Barriers> bars, ArrayList<Coin> coins, ArrayList<Missiles> missiles, ArrayList<Hero> hero) {
-		this.barriers = bars;
-		this.coins = coins;
-		this.missiles=missiles;
-		this.hero=hero;
-	}
-	
-	public void updateMissiles() {
-		 for (int i = 0; i < this.missiles.size();i++) { 
-			 Missiles missile = this.missiles.get(i);
-		 
-			missile.playerY(playerYPos);
-			boolean reset = missile.move();
-			if (reset) {
-				int missileX=this.getX()+missile.getX();
-				int missileY=missile.getY();
-				this.missiles.remove(missile);
-				this.missiles.add(new Missiles(missileX, missileY, true));
-			}
-			
-		 }
-		
-	}
-	
-	public void playerYPos(int yPos) {
-		this.playerYPos = yPos;
-		
-	}
-
-	
-	@Override
-	protected void paintComponent(Graphics graphics) {
-		super.paintComponent(graphics);
-		Graphics2D graphics2 = (Graphics2D) graphics;
-
-		for (int i = 0; i < barriers.size(); i++) {
-			barriers.get(i).drawOn(graphics2);
-		}
-		for (int i = 0; i < coins.size(); i++) {
-			coins.get(i).drawOn(graphics2);
-		}
-		
-		for (int i = 0; i < missiles.size(); i++) {
-			missiles.get(i).drawOn(graphics2);
-		}
-		for (int i = 0; i < hero.size(); i++) {
-			hero.get(i).drawOn(graphics2);
-		}
-		
-		updateMissiles();
-	}
-	*/
-	
 
 }

@@ -141,25 +141,7 @@ public class FileReader {
 
 						this.barriers.add(new Barriers(xPos, yPos, true, rotR));
 					}
-					if (line.charAt(i) == 'L') {
-						if (line.charAt(0) == '1') {
-							lineNum = '1';
-							heightSection = 1;
-
-						} else if (line.charAt(0) == '2') {
-							lineNum = '2';
-							heightSection = 2;
-						} else {
-							lineNum = '3';
-							heightSection = 3;
-						}
-						xPos = 0;
-						xPos = i * 50;
-						yPos = 0;
-						yPos = heightSection * yPosIteration;
-
-						this.barriers.add(new Barriers(xPos, yPos, false, rotL));
-					}
+					
 
 					if (line.charAt(i) == 'M') {
 						if (line.charAt(0) == '1') {

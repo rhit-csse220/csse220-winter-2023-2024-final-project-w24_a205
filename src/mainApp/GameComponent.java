@@ -145,8 +145,8 @@ public class GameComponent extends JComponent {
 			if (this.box.y < 30) {
 				this.box.y = 30;
 			}
-		}
-
+		}   
+		
 		if (gravReverse == true) {
 			if (isJumping) {
 				box.y += JUMP_HEIGHT;

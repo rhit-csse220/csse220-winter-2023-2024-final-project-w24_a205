@@ -169,29 +169,30 @@ public class GameComponent extends JComponent {
 			System.out.println("end of level!!!");
 			int lvl = level + 1;
 			if (lvl > 4) {
-				if (lives==5) {
-					this.main.endLevel(); 
+				if (lives == 5) {
+					this.main.endLevel();
 					try {
 						FileReader fileReader = new FileReader();
-						fileReader.readFile(5, coinCount, lives);
+						fileReader.readFile(lvl, coinCount, lives);
 					} catch (InvalidLevelFormatException e) {
 						e.printStackTrace();
 					}
-				}else {
+				} else {
 					System.out.println("Game complete!");
 					System.exit(0);
 				}
-			}else {
-			this.main.endLevel();
-			try {
-				FileReader fileReader = new FileReader();
-				fileReader.readFile(lvl, coinCount, lives);
-			} catch (InvalidLevelFormatException e) {
-				e.printStackTrace();
-			}
+			} else {
+				this.main.endLevel();
+				try {
+					FileReader fileReader = new FileReader();
+					fileReader.readFile(lvl, coinCount, lives);
+				} catch (InvalidLevelFormatException e) {
+					e.printStackTrace();
+				}
 			}
 
-		}   if (this.box.x < 0) {
+		}
+		if (this.box.x < 0) {
 			this.box.x = 0;
 		}
 	}

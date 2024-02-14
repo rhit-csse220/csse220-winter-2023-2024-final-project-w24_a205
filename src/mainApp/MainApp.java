@@ -55,7 +55,12 @@ public class MainApp extends JFrame {
 		
 		JPanel panel = new JPanel();
 		
-		JButton jumpButton = new JButton("Jump");
+		JButton jumpButton = new JButton("Game On!");
+		
+		JButton pauseButton = new JButton("Pause = 'P'");
+		
+		JButton upLevelButton = new JButton("UpLevel = 'U'");
+		JButton downLevelButton = new JButton("DownLevel = 'D'");
 		
 		JButton livesButton = new JButton ("Lives left: " + lives );
 		
@@ -64,6 +69,9 @@ public class MainApp extends JFrame {
 		JButton coinsButton = new JButton ("Coins: " + coins);
 		
 		panel.add(jumpButton);
+		panel.add(pauseButton);
+		panel.add(upLevelButton);
+		panel.add(downLevelButton);
 		panel.add(livesButton);
 		panel.add(coinsButton);
 		panel.add(levelButton);

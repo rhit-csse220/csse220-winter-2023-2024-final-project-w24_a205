@@ -273,7 +273,7 @@ public class GameComponent extends JComponent {
 			boolean shouldRemove = effects.fall(this.getHeight(), this.gravReverse);
 			if (shouldRemove ) {
 				effectsToRemove.add(effects);
-			}
+			}  
 	
 		}
 		for (JetPackEffects effects: effectsToRemove) {

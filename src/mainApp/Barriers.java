@@ -39,7 +39,7 @@ public class Barriers extends Collidable{
 		if (this.isElectric==true) {
 			g2.setColor(Color.RED);
 		} else {
-			g2.setColor(Color.GREEN);
+			g2.setColor(Color.GRAY);
 		}
 		if (this.rotation == 'R') {
 			Polygon barR = new Polygon();

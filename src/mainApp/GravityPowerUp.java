@@ -2,14 +2,17 @@ package mainApp;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 
+import javax.swing.ImageIcon;
+
 public class GravityPowerUp extends Collidable {
 
-public Color color = Color.MAGENTA;
+	private Image grav;
 	
-	private static final int GRAV_POWER_UP_SIZE = 10;
+	private static final int GRAV_POWER_UP_SIZE = 15;
 	private int gpX, gpY;
 	
 	
@@ -23,10 +26,10 @@ public Color color = Color.MAGENTA;
 	}
 
 	public void drawOn(Graphics2D g2) {
-		g2.setColor(this.color);
-		Ellipse2D.Double powerUp= 
-				new Ellipse2D.Double(this.gpX, this.gpY, GRAV_POWER_UP_SIZE, GRAV_POWER_UP_SIZE);
-		g2.fill(powerUp);
+		grav = new ImageIcon("gravPowerUp2.png").getImage();
+		g2.drawImage(grav, (int)this.gpX, (int)this.gpY, null);
+		
+		
 		
 	}
 	

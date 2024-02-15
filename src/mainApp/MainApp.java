@@ -50,11 +50,28 @@ public class MainApp extends JFrame {
 			System.exit(0);
 
 		}
-		JFrame frame = new JFrame("Arcade Game");
+		JFrame frame = new JFrame();
+		frame.setTitle("Barry's Adventure");
+	
 		frame.setSize(1550, 300);
+		frame.setResizable(false);
+		
+		frame.setVisible(true);
+
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		
+		ImageIcon image = new ImageIcon("barry.png");
+		frame.setIconImage(image.getImage());
+		
+		frame.getContentPane().setBackground(new Color(204, 245, 255));
+		
 
 		JPanel panel = new JPanel();
-
+		panel.setBackground(Color.gray);
+		
+		
+		
 		JButton jumpButton = new JButton("Game On!");
 
 		JButton pauseButton = new JButton("Pause = 'P'");
@@ -83,7 +100,8 @@ public class MainApp extends JFrame {
 		panel.add(livesButton);
 		panel.add(coinsButton);
 		panel.add(levelButton);
-
+		
+		
 		frame.add(panel, BorderLayout.SOUTH);
 
 		frame.add(component, BorderLayout.CENTER);
@@ -183,10 +201,9 @@ public class MainApp extends JFrame {
 			}
 		});
   
-		frame.setVisible(true);
-
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		this.frame = frame;
+		
 	}
 
 	public void endLevel() {
@@ -196,18 +213,23 @@ public class MainApp extends JFrame {
 	}
 
 	public static void main(String[] args) {
+		MyPanel p2;
+		
 		JFrame frame = new JFrame("Game Menu");
 		frame.setSize(1550, 300 );
-
+		
+		p2 = new MyPanel();
 		JPanel panel = new JPanel();
+		
+		panel.setBackground(Color.GRAY);
 
 		JButton GameStart = new JButton("Press 'S' To Start Game");
 		JButton GameExit = new JButton("Press 'E' To Exit");
 
 		panel.add(GameStart);
 		panel.add(GameExit);
-
-		frame.add(panel);
+		frame.add(p2, BorderLayout.CENTER);
+		frame.add(panel, BorderLayout.SOUTH);
 
 		GameStart.addKeyListener(new KeyListener() {
 
@@ -241,10 +263,15 @@ public class MainApp extends JFrame {
 
 		});
 
-		frame.setVisible(true);
+		
+		ImageIcon barry = new ImageIcon("barry.png");
+		frame.setIconImage(barry.getImage());
+		
+		
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		frame.setVisible(true);
 
 	}
 }
+

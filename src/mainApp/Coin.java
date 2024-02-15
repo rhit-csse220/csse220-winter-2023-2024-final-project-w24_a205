@@ -2,13 +2,17 @@ package mainApp;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 
-public class Coin extends Collidable {
-	public Color color = Color.yellow;
+import javax.swing.ImageIcon;
 
-	private static final int COIN_SIZE = 20;
+public class Coin extends Collidable {
+	private Image coin;
+	
+
+	private static final int COIN_SIZE = 15;
 	private int coinX, coinY;
 
 	public Coin(int coinX, int coinY) {
@@ -25,9 +29,9 @@ public class Coin extends Collidable {
 	}
 
 	public void drawOn(Graphics2D g2) {
-		g2.setColor(this.color);
-		Ellipse2D.Double coin = new Ellipse2D.Double(this.coinX, this.coinY, COIN_SIZE, COIN_SIZE);
-		g2.fill(coin);
+		coin = new ImageIcon("coin2.png").getImage();
+		g2.drawImage(coin, this.coinX, this.coinY, null);
+		
 
 	}
 }

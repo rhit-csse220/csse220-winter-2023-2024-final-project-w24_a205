@@ -3,11 +3,13 @@ package mainApp;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 
 public class GameComponent extends JComponent {
@@ -23,6 +25,7 @@ public class GameComponent extends JComponent {
 
 	private int lives;
 	private int coinCount;
+	private Image barry, barryFlipped, floor,wall;
 
 	private int numTicks;
 	private static final int BOX_SIZE = 20;
@@ -145,8 +148,8 @@ public class GameComponent extends JComponent {
 			if (this.box.y < 30) {
 				this.box.y = 30;
 			}
-		}   
-		
+		}
+
 		if (gravReverse == true) {
 			if (isJumping) {
 				box.y += JUMP_HEIGHT;
@@ -165,7 +168,7 @@ public class GameComponent extends JComponent {
 		// Keep the box from going off the screen
 		if (this.box.x > this.getWidth() - box.getWidth()) {
 			this.box.x = this.getWidth() - box.getWidth();
-			if(level==5) {
+			if (level == 5) {
 				System.out.println("Bonus complete!");
 				System.exit(0);
 			}
@@ -284,35 +287,55 @@ public class GameComponent extends JComponent {
 		for (JetPackEffects effects : effectsToRemove) {
 			this.jetEffects.remove(effects);
 		}
+
 	}
 
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
+		barry = new ImageIcon("barry.png").getImage();
+		barryFlipped = new ImageIcon("barryFlipped.png").getImage();
+		floor = new ImageIcon("floor.png").getImage();
+		wall = new ImageIcon("wall2.png").getImage();
+		Color color = new Color(204, 245, 255);
+
 		Graphics2D g2 = (Graphics2D) g;
-		g2.fillRect(0, this.getHeight() - 20, this.getWidth(), this.getHeight());
-		g2.fillRect(0, 0, this.getWidth(), 30);
-		g2.fill(this.box);
+		g2.drawImage(wall, 0, 0, null);
+		g2.drawImage(wall, 775, 0, null); 
+		
+		g2.drawImage(floor, 0, this.getHeight() - 20, null);
+		g2.drawImage(floor, 775, this.getHeight() - 20, null);
+		
+		g2.drawImage(floor,0,0, null);
+		g2.drawImage(floor,775,0, null);
+
+		//g2.setColor(Color.LIGHT_GRAY);
+		//g2.fill(this.box);
+
+		if (gravReverse == true) {
+			g2.drawImage(barryFlipped, (int) box.x - 10, (int) box.y - 10, null);
+		} else {
+			g2.drawImage(barry, (int) box.x - 10, (int) box.y - 10, null);
+		}
 
 		for (Missiles missile : this.missiles) {
 			missile.drawOn(g2);
 		}
-			for (Barriers bar : this.barriers) {
-				bar.drawOn(g2);
+		for (Barriers bar : this.barriers) {
+			bar.drawOn(g2);
 
-			}
-			for (Coin coin : this.coins) {
-				coin.drawOn(g2);
-			}
-			for (GravityPowerUp powerUp : this.gravPowerUps) {
-				powerUp.drawOn(g2);
-			}
-			for (JetPackEffects effects : this.jetEffects) {
-				effects.drawOn(g2);
+		}
+		for (Coin coin : this.coins) {
+			coin.drawOn(g2);
+		}
+		for (GravityPowerUp powerUp : this.gravPowerUps) {
+			powerUp.drawOn(g2);
+		}
+		for (JetPackEffects effects : this.jetEffects) {
+			effects.drawOn(g2);
 
-			}
-		
+		}
 
 	}
 }

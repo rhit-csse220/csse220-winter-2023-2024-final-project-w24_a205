@@ -37,14 +37,18 @@ public class JetPackEffects {
 		}
 
 	}
-
+ 
 	public void drawOn(Graphics2D g) {
-		int randColor = (int) (Math.random() * 2);
+		int randColor = (int) (Math.random() * 4);
 		Color color;
 		if (randColor == 0) {
 			color = Color.ORANGE;
-		} else {
+		} else if (randColor == 1) {
+			color = Color.YELLOW;
+		} else if (randColor == 2) {
 			color = Color.GRAY;
+		}else {
+			color = Color.RED;
 		}
 
 		g.setColor(color);

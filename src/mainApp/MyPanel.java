@@ -24,7 +24,6 @@ public class MyPanel extends JPanel{
 		
 		this.setBackground(Color.DARK_GRAY);
 		menu = new ImageIcon("BarryMenu.png").getImage();	
-		//backgroundImage = new ImageIcon("space.png").getImage();
 		
 	}
 

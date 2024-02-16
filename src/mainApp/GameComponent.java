@@ -86,7 +86,6 @@ public class GameComponent extends JComponent {
 
 	public void drawScreen() {
 		this.repaint();
-		// System.out.println("Tick " + this.numTicks);
 
 	}
 
@@ -302,8 +301,7 @@ public class GameComponent extends JComponent {
 		g2.drawImage(wall, 0, 0, null);
 		g2.drawImage(wall, 775, 0, null);
 
-		g2.drawImage(floor, 0, this.getHeight() - 20, null);
-		g2.drawImage(floor, 775, this.getHeight() - 20, null);
+
 
 		g2.drawImage(floor, 0, 0, null);
 		g2.drawImage(floor, 775, 0, null);

@@ -35,6 +35,7 @@ public class Missiles extends Collidable {
 
 	public void drawOn(Graphics2D g) {
 		mis = new ImageIcon("missile2.png").getImage();
+
 		g.drawImage(mis, (int) this.x, (int) this.y, null);
 		g.setColor(Color.BLACK);
 	}

@@ -86,7 +86,6 @@ public class GameComponent extends JComponent {
 
 	public void drawScreen() {
 		this.repaint();
-		// System.out.println("Tick " + this.numTicks);
 
 	}
 
@@ -310,8 +309,6 @@ public class GameComponent extends JComponent {
 		g2.drawImage(floor,0,0, null);
 		g2.drawImage(floor,775,0, null);
 
-		//g2.setColor(Color.LIGHT_GRAY);
-		//g2.fill(this.box);
 
 		if (gravReverse == true) {
 			g2.drawImage(barryFlipped, (int) box.x - 10, (int) box.y - 10, null);

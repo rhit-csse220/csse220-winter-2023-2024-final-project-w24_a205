@@ -17,7 +17,6 @@ public class GameAdvanceListener implements ActionListener {
 	}
 
 	public void advanceOneTick() {
-		// System.out.println("Current time " + System.currentTimeMillis());
 		this.gameComponent.updateState();
 		this.gameComponent.drawScreen();
 	}

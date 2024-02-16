@@ -42,7 +42,7 @@ public class Missiles extends Collidable {
 	public void playerY(double playerY) {
 		this.playerY = playerY;
 		if (isTracking == true) {
-			if (this.y > playerY) {
+			if (this.y > playerY) { 
 				this.y -= this.yVelocity;
 			} else if (this.y < playerY) {
 
@@ -53,7 +53,7 @@ public class Missiles extends Collidable {
 	}
 
 	// Use to detect if the missiles hit the box
-	// Refactor into Collidable at some point
+	// Could be further refactored into Collidable!!
 	public boolean insideBox(Rectangle2D.Double b) {
 		return b.intersects(x, y, WIDTH, HEIGHT);
 	}

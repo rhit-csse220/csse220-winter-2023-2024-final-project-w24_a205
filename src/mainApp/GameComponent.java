@@ -271,9 +271,9 @@ public class GameComponent extends JComponent {
 
 	private void updateJetpackEffects() {
 
-		if (Math.random() < 0.5) {
+		//if (Math.random() < 0.5) {
 			this.jetEffects.add(new JetPackEffects(this.BOX_SIZE, this.box.x, this.box.y));
-		}
+		//}
 
 		List<JetPackEffects> effectsToRemove = new ArrayList<>();
 		for (JetPackEffects effects : this.jetEffects) {

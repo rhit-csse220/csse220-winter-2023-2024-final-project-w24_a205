@@ -25,7 +25,7 @@ public class GameComponent extends JComponent {
 
 	private int lives;
 	private int coinCount;
-	private Image barry, barryFlipped, floor,wall;
+	private Image barry, barryFlipped, floor, wall;
 
 	private int numTicks;
 	private static final int BOX_SIZE = 20;
@@ -138,11 +138,11 @@ public class GameComponent extends JComponent {
 		if (gravReverse == false) {
 			if (isJumping) {
 				box.y -= JUMP_HEIGHT;
-				isJumping = false; // Stop jumping after one jump
+				isJumping = false;
 			} else {
-				// Otherwise, simulate gravity by moving the box downward
+
 				if (box.y < this.getHeight() - BOX_SIZE - 20) {
-					box.y += 4; // Adjust this value for fall speed
+					box.y += 4;
 				}
 			}
 			if (this.box.y < 30) {
@@ -153,11 +153,11 @@ public class GameComponent extends JComponent {
 		if (gravReverse == true) {
 			if (isJumping) {
 				box.y += JUMP_HEIGHT;
-				isJumping = false; // Stop jumping after one jump
+				isJumping = false;
 			} else {
-				// Otherwise, simulate gravity by moving the box downward
+
 				if (box.y > 30) {
-					box.y -= 4; // Adjust this value for fall speed
+					box.y -= 4;
 				}
 			}
 			if (this.box.y > this.getHeight() - BOX_SIZE - 20) {
@@ -170,7 +170,7 @@ public class GameComponent extends JComponent {
 			this.box.x = this.getWidth() - box.getWidth();
 			if (level == 5) {
 				System.out.println("Bonus complete!");
-				System.exit(0);
+				this.main.endMenu();
 			}
 
 			System.out.println("end of level!!!");
@@ -186,7 +186,7 @@ public class GameComponent extends JComponent {
 					}
 				} else {
 					System.out.println("Game complete!");
-					System.exit(0);
+					this.main.endMenu();
 				}
 			} else {
 				this.main.endLevel();
@@ -272,9 +272,7 @@ public class GameComponent extends JComponent {
 
 	private void updateJetpackEffects() {
 
-		//if (Math.random() < 0.5) {
-			this.jetEffects.add(new JetPackEffects(this.BOX_SIZE, this.box.x, this.box.y));
-		//}
+		this.jetEffects.add(new JetPackEffects(this.BOX_SIZE, this.box.x, this.box.y));
 
 		List<JetPackEffects> effectsToRemove = new ArrayList<>();
 		for (JetPackEffects effects : this.jetEffects) {
@@ -302,16 +300,13 @@ public class GameComponent extends JComponent {
 
 		Graphics2D g2 = (Graphics2D) g;
 		g2.drawImage(wall, 0, 0, null);
-		g2.drawImage(wall, 775, 0, null); 
-		
+		g2.drawImage(wall, 775, 0, null);
+
 		g2.drawImage(floor, 0, this.getHeight() - 20, null);
 		g2.drawImage(floor, 775, this.getHeight() - 20, null);
-		
-		g2.drawImage(floor,0,0, null);
-		g2.drawImage(floor,775,0, null);
 
-		//g2.setColor(Color.LIGHT_GRAY);
-		//g2.fill(this.box);
+		g2.drawImage(floor, 0, 0, null);
+		g2.drawImage(floor, 775, 0, null);
 
 		if (gravReverse == true) {
 			g2.drawImage(barryFlipped, (int) box.x - 10, (int) box.y - 10, null);

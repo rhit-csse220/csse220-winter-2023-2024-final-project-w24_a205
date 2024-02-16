@@ -8,6 +8,5 @@ abstract class Collidable {
 	int barrierWidth; 
 	int coinSize;
 
-	boolean playerHasPassed = false;
 
 }

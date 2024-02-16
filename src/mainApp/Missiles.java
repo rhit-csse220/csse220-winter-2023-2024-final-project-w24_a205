@@ -35,17 +35,14 @@ public class Missiles extends Collidable {
 
 	public void drawOn(Graphics2D g) {
 		mis = new ImageIcon("missile2.png").getImage();
-		g.drawImage(mis, (int)this.x, (int) this.y, null);
-		//g.setColor(Color.RED);
-		//Rectangle2D.Double missile = new Rectangle2D.Double(this.x, this.y, WIDTH, HEIGHT);
-		//g.fill(missile);
+		g.drawImage(mis, (int) this.x, (int) this.y, null);
 		g.setColor(Color.BLACK);
 	}
 
 	public void playerY(double playerY) {
 		this.playerY = playerY;
 		if (isTracking == true) {
-			if (this.y > playerY) { 
+			if (this.y > playerY) {
 				this.y -= this.yVelocity;
 			} else if (this.y < playerY) {
 
@@ -55,12 +52,8 @@ public class Missiles extends Collidable {
 		}
 	}
 
-	// Use to detect if the missiles hit the box
-	// Could be further refactored into Collidable!!
 	public boolean insideBox(Rectangle2D.Double b) {
 		return b.intersects(x, y, WIDTH, HEIGHT);
 	}
-
-	
 
 }

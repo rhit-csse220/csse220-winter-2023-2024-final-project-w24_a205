@@ -25,13 +25,13 @@ import java.util.Scanner;
  */
 
 public class MainApp extends JFrame {
-	public static final int DELAY = 50;
+	private static final int DELAY = 50;
 	private boolean isJumping;
 	private Timer timer;    
-	JFrame frame;
-	JButton livesButton;
-	JButton coinsButton;
-	JPanel panel;
+	private JFrame frame;
+	private JButton livesButton;
+	private JButton coinsButton;
+	private JPanel panel;
 	private boolean isPaused = false;
 	private int lives;
 	private int coins;
@@ -209,7 +209,65 @@ public class MainApp extends JFrame {
 	public void endLevel() {
 		timer.stop();
 		frame.setVisible(false);
+	}
+		
+		
+	public void endMenu() {
+		timer.stop();
+		frame.setVisible(false);
+		
+		JFrame f2 = new JFrame("End Menu");
+		f2.setSize(300, 300 );
+		JButton playAgain = new JButton("Press 'S' To Play Again");
+		JButton gameExit = new JButton("Press 'E' To Exit");
+		JPanel panel = new JPanel();
+		
+		
+		panel.add(playAgain);
+		panel.add(gameExit);
+		
+		f2.add(panel, BorderLayout.CENTER);
+		
+		ImageIcon barry = new ImageIcon("barry.png");
+		f2.setIconImage(barry.getImage());
+		
+		f2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f2.setResizable(false);
+		f2.setVisible(true);
+		
+		playAgain.addKeyListener(new KeyListener(){
 
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+				
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_S) {
+					try {
+						FileReader fileReader = new FileReader();
+						fileReader.readFile(0, 0, 5);
+					} catch (InvalidLevelFormatException e1) {
+						e1.printStackTrace();
+					}
+				
+				}
+				if (e.getKeyCode() == KeyEvent.VK_E) {
+					System.exit(0);
+				}
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+	
 	}
 
 	public static void main(String[] args) {
@@ -223,15 +281,15 @@ public class MainApp extends JFrame {
 		
 		panel.setBackground(Color.GRAY);
 
-		JButton GameStart = new JButton("Press 'S' To Start Game");
-		JButton GameExit = new JButton("Press 'E' To Exit");
+		JButton gameStart = new JButton("Press 'S' To Start Game");
+		JButton gameExit = new JButton("Press 'E' To Exit");
 
-		panel.add(GameStart);
-		panel.add(GameExit);
+		panel.add(gameStart);
+		panel.add(gameExit);
 		frame.add(p2, BorderLayout.CENTER);
 		frame.add(panel, BorderLayout.SOUTH);
 
-		GameStart.addKeyListener(new KeyListener() {
+		gameStart.addKeyListener(new KeyListener() {
 
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -267,7 +325,7 @@ public class MainApp extends JFrame {
 		ImageIcon barry = new ImageIcon("barry.png");
 		frame.setIconImage(barry.getImage());
 		
-		
+		frame.setResizable(false);
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);

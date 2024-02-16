@@ -37,7 +37,7 @@ public class JetPackEffects {
 		}
 
 	}
- 
+
 	public void drawOn(Graphics2D g) {
 		int randColor = (int) (Math.random() * 4);
 		Color color;
@@ -47,14 +47,14 @@ public class JetPackEffects {
 			color = Color.YELLOW;
 		} else if (randColor == 2) {
 			color = Color.GRAY;
-		}else {
+		} else {
 			color = Color.RED;
 		}
 
 		g.setColor(color);
-		Ellipse2D.Double drop = new Ellipse2D.Double(this.x, this.y, SIZE, SIZE);
-		g.fill(drop);
-		g.setColor(Color.BLACK);
+		Ellipse2D.Double particle = new Ellipse2D.Double(this.x, this.y, SIZE, SIZE);
+		g.fill(particle);
+		
 	}
 
 }

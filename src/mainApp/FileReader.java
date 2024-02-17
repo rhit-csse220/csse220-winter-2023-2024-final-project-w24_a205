@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
+
 /**
  * Class: FileReader
  * 
@@ -18,11 +19,13 @@ public class FileReader {
 	private ArrayList<Coin> coins = new ArrayList<>();
 	private ArrayList<GravityPowerUp> gravPowerUps = new ArrayList<>();
 	private ArrayList<Missiles> missiles = new ArrayList<>();
-	
-	
+
 	private String filename;
+
 	/**
-	 * ensures that appropriate level files are read and objects are created and assigned to ArrayLists
+	 * ensures that appropriate level files are read and objects are created and
+	 * assigned to ArrayLists
+	 * 
 	 * @param level
 	 * @param coinCount
 	 * @param lives
@@ -57,7 +60,7 @@ public class FileReader {
 				String line = scanner.nextLine();
 
 				for (int i = 0; i < line.length(); i++) {
-					char test=line.charAt(i);
+					char test = line.charAt(i);
 					if (line.charAt(i) == 'C') {
 						if (line.charAt(0) == '1') {
 							lineNum = '1';
@@ -154,7 +157,6 @@ public class FileReader {
 
 						this.barriers.add(new Barriers(xPos, yPos, true, rotR));
 					}
-					
 
 					if (line.charAt(i) == 'M') {
 						if (line.charAt(0) == '1') {

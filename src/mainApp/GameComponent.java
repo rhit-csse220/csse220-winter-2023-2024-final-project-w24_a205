@@ -11,11 +11,12 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
+
 /**
  * Class: GameComponent
  * 
  * @author W24_A205 <br>
- *         Purpose: Establishes and creates missile objects <br>
+ *         Purpose: Adds and updates all of the game objects <br>
  *         Restrictions: None
  * 
  */
@@ -71,6 +72,9 @@ public class GameComponent extends JComponent {
 		this.main = main;
 	}
 
+	/**
+	 * ensures that all the update functions are called every tick
+	 */
 	public void updateState() {
 		updateBox();
 		updateBarriers();
@@ -91,11 +95,18 @@ public class GameComponent extends JComponent {
 
 	}
 
+	/**
+	 * ensures that the game is redrawn every tick
+	 */
 	public void drawScreen() {
 		this.repaint();
 
 	}
 
+	/**
+	 * ensures that coins disappear and are added to the coin counter when collided
+	 * with
+	 */
 	public void updateCoins() {
 		List<Coin> coinsToRemove = new ArrayList<>();
 		for (Coin coin : this.coins) {
@@ -115,6 +126,10 @@ public class GameComponent extends JComponent {
 
 	}
 
+	/**
+	 * ensures that gravity power-ups disappear when collided with and that the
+	 * gravity state is updated
+	 */
 	public void updateGravPowerUps() {
 		List<GravityPowerUp> gravPUpsToRemove = new ArrayList<>();
 		for (GravityPowerUp powerUp : this.gravPowerUps) {
@@ -134,6 +149,11 @@ public class GameComponent extends JComponent {
 
 	}
 
+	/**
+	 * ensures that the hero moves every tick, switches gravity when a power-up is
+	 * collected, and moves to the next level after hitting the right side of the
+	 * screen
+	 */
 	public void updateBox() {
 
 		this.box.x += this.dx;
@@ -210,6 +230,11 @@ public class GameComponent extends JComponent {
 		}
 	}
 
+	/**
+	 * ensures that the hero is blocked if they collide with a normal barrier, and
+	 * that they lose a life and restart the level if t collide with an electric
+	 * barrier
+	 */
 	private void updateBarriers() {
 		for (Barriers barrier : this.barriers) {
 
@@ -236,6 +261,11 @@ public class GameComponent extends JComponent {
 		}
 	}
 
+	/**
+	 * ensures that the player loses a life and restarts the level if they collide
+	 * with a missile, and that a new missile is created if one hits the left side
+	 * of the screen
+	 */
 	private void updateMissiles() {
 
 		List<Missiles> missilesToRemove = new ArrayList<>();
@@ -276,6 +306,10 @@ public class GameComponent extends JComponent {
 		}
 	}
 
+	/**
+	 * ensures that effects are added every tick and that they are removed when they
+	 * hit the ground
+	 */
 	private void updateJetpackEffects() {
 
 		this.jetEffects.add(new JetPackEffects(this.BOX_SIZE, this.box.x, this.box.y));
@@ -294,6 +328,10 @@ public class GameComponent extends JComponent {
 
 	}
 
+	/**
+	 * ensures that unique sprites are drawn, and that every created object is drawn
+	 * in the level
+	 */
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -307,8 +345,6 @@ public class GameComponent extends JComponent {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.drawImage(wall, 0, 0, null);
 		g2.drawImage(wall, 775, 0, null);
-
-
 
 		g2.drawImage(floor, 0, 0, null);
 		g2.drawImage(floor, 775, 0, null);

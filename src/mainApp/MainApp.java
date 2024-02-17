@@ -27,7 +27,7 @@ import java.util.Scanner;
 public class MainApp extends JFrame {
 	private static final int DELAY = 50;
 	private boolean isJumping;
-	private Timer timer;    
+	private Timer timer;
 	private JFrame frame;
 	private JButton livesButton;
 	private JButton coinsButton;
@@ -39,6 +39,15 @@ public class MainApp extends JFrame {
 	private int level;
 	private boolean isInSlowMo;
 
+	/**
+	 * ensures that the level window is created and that all the key presses do
+	 * their appropriate actions
+	 * 
+	 * @param component
+	 * @param coins
+	 * @param lives
+	 * @param level
+	 */
 	public void MainApp(GameComponent component, int coins, int lives, int level) {
 		this.component = component;
 		this.lives = lives;
@@ -52,26 +61,22 @@ public class MainApp extends JFrame {
 		}
 		JFrame frame = new JFrame();
 		frame.setTitle("Barry's Adventure");
-	
+
 		frame.setSize(1550, 300);
 		frame.setResizable(false);
-		
+
 		frame.setVisible(true);
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		
 		ImageIcon image = new ImageIcon("barry.png");
 		frame.setIconImage(image.getImage());
-		
+
 		frame.getContentPane().setBackground(new Color(204, 245, 255));
-		
 
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.gray);
-		
-		
-		
+
 		JButton jumpButton = new JButton("Game On!");
 
 		JButton pauseButton = new JButton("Pause = 'P'");
@@ -83,11 +88,11 @@ public class MainApp extends JFrame {
 		JButton downLevelButton = new JButton("DownLevel = 'D'");
 
 		JButton livesButton = new JButton("Lives left: " + lives);
-		
+
 		JButton levelButton = new JButton("Level: " + (level + 1));
-		
+
 		if (level == 5) {
-		levelButton.setText("Bonus Level!");
+			levelButton.setText("Bonus Level!");
 		}
 		JButton coinsButton = new JButton("Coins: " + coins);
 
@@ -100,8 +105,7 @@ public class MainApp extends JFrame {
 		panel.add(livesButton);
 		panel.add(coinsButton);
 		panel.add(levelButton);
-		
-		
+
 		frame.add(panel, BorderLayout.SOUTH);
 
 		frame.add(component, BorderLayout.CENTER);
@@ -129,7 +133,7 @@ public class MainApp extends JFrame {
 					mainApp.MainApp.main(null);
 					timer.stop();
 					frame.setVisible(false);
-					
+
 				}
 
 				if (e.getKeyCode() == KeyEvent.VK_U) {
@@ -200,46 +204,50 @@ public class MainApp extends JFrame {
 
 			}
 		});
-  
-		
+
 		this.frame = frame;
-		
+
 	}
 
+	/**
+	 * ensures that the game window is closed when a level ends
+	 */
 	public void endLevel() {
 		timer.stop();
 		frame.setVisible(false);
 	}
-		
-		
+
+	/**
+	 * ensures that a unique menu is displayed asking if you want to play again or
+	 * quit
+	 */
 	public void endMenu() {
 		timer.stop();
 		frame.setVisible(false);
-		
+
 		JFrame f2 = new JFrame("End Menu");
-		f2.setSize(300, 300 );
+		f2.setSize(300, 300);
 		JButton playAgain = new JButton("Press 'S' To Play Again");
 		JButton gameExit = new JButton("Press 'E' To Exit");
 		JPanel panel = new JPanel();
-		
-		
+
 		panel.add(playAgain);
 		panel.add(gameExit);
-		
+
 		f2.add(panel, BorderLayout.CENTER);
-		
+
 		ImageIcon barry = new ImageIcon("barry.png");
 		f2.setIconImage(barry.getImage());
-		
+
 		f2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f2.setResizable(false);
 		f2.setVisible(true);
-		
-		playAgain.addKeyListener(new KeyListener(){
+
+		playAgain.addKeyListener(new KeyListener() {
 
 			@Override
 			public void keyTyped(KeyEvent e) {
-					
+
 			}
 
 			@Override
@@ -251,33 +259,39 @@ public class MainApp extends JFrame {
 					} catch (InvalidLevelFormatException e1) {
 						e1.printStackTrace();
 					}
-				
+
 				}
 				if (e.getKeyCode() == KeyEvent.VK_E) {
 					System.exit(0);
 				}
-				
+
 			}
 
 			@Override
 			public void keyReleased(KeyEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 		});
-	
+
 	}
 
+	/**
+	 * ensures that the starting menu appears when the game is opened, and that the
+	 * game runs if 'S' is clicked
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		MyPanel p2;
-		
+
 		JFrame frame = new JFrame("Game Menu");
-		frame.setSize(1550, 300 );
-		
+		frame.setSize(1550, 300);
+
 		p2 = new MyPanel();
 		JPanel panel = new JPanel();
-		
+
 		panel.setBackground(Color.GRAY);
 
 		JButton gameStart = new JButton("Press 'S' To Start Game");
@@ -304,13 +318,13 @@ public class MainApp extends JFrame {
 					} catch (InvalidLevelFormatException e1) {
 						e1.printStackTrace();
 					}
-					frame  .setVisible(false);
+					frame.setVisible(false);
 
 				}
 				if (e.getKeyCode() == KeyEvent.VK_E) {
 					System.exit(0);
 				}
-				
+
 			}
 
 			@Override
@@ -322,7 +336,7 @@ public class MainApp extends JFrame {
 
 		ImageIcon barry = new ImageIcon("barry.png");
 		frame.setIconImage(barry.getImage());
-		
+
 		frame.setResizable(false);
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -330,4 +344,3 @@ public class MainApp extends JFrame {
 
 	}
 }
-

@@ -11,7 +11,14 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
-
+/**
+ * Class: GameComponent
+ * 
+ * @author W24_A205 <br>
+ *         Purpose: Establishes and creates missile objects <br>
+ *         Restrictions: None
+ * 
+ */
 public class GameComponent extends JComponent {
 
 	private Rectangle2D.Double box;

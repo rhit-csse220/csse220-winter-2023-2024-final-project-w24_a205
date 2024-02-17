@@ -29,14 +29,9 @@ public class MainApp extends JFrame {
 	private boolean isJumping;
 	private Timer timer;
 	private JFrame frame;
-	private JButton livesButton;
-	private JButton coinsButton;
-	private JPanel panel;
+
 	private boolean isPaused = false;
-	private int lives;
-	private int coins;
-	private GameComponent component;
-	private int level;
+
 	private boolean isInSlowMo;
 
 	/**
@@ -49,16 +44,8 @@ public class MainApp extends JFrame {
 	 * @param level
 	 */
 	public void MainApp(GameComponent component, int coins, int lives, int level) {
-		this.component = component;
-		this.lives = lives;
-		this.coins = coins;
 
-		if (lives < 0) {
-
-			System.out.println("Game over: out of lives");
-			System.exit(0);
-
-		}
+		
 		JFrame frame = new JFrame();
 		frame.setTitle("Barry's Adventure");
 
@@ -206,6 +193,13 @@ public class MainApp extends JFrame {
 		});
 
 		this.frame = frame;
+		if (lives < 0) {
+
+			System.out.println("Game over: out of lives");
+			endMenu(coins, lives, true);
+			
+
+		}
 
 	}
 
@@ -221,30 +215,32 @@ public class MainApp extends JFrame {
 	 * ensures that a unique menu is displayed asking if you want to play again or
 	 * quit
 	 */
-	public void endMenu(int coins, int lives) {
-		
-		int finalCoinCount = coins;
-		int finalLivesLeft = lives;
+	public void endMenu(int coins, int lives, boolean isGameOver) {
 		timer.stop();
 		frame.setVisible(false);
-
+		
+		if (lives <0) {
+			lives = 0;
+		}
+		
 		JFrame f2 = new JFrame("End Menu");
 		f2.setSize(300, 300);
+		JButton winOrLose = new JButton("Good Job! You Win!");
 		JButton playAgain = new JButton("Press 'S' To Play Again");
 		JButton gameExit = new JButton("Press 'E' To Exit");
 		JButton finalStats = new JButton("Lives Left: " + lives + ", Coins Collected: " + coins);
 		JPanel panel = new JPanel();
-		JPanel panelStats = new JPanel();
 		
-
+		if (isGameOver == true) {
+			winOrLose.setText("Game Over: You Lose");
+		}
 		panel.add(playAgain);
+		panel.add(winOrLose);
+		panel.add(finalStats);
 		panel.add(gameExit);
-		panelStats.add(finalStats);
 		
-		f2.add(panelStats, BorderLayout.SOUTH); 
 
 		f2.add(panel, BorderLayout.CENTER);
-		
 
 		ImageIcon barry = new ImageIcon("barry.png");
 		f2.setIconImage(barry.getImage());
@@ -269,6 +265,7 @@ public class MainApp extends JFrame {
 					} catch (InvalidLevelFormatException e1) {
 						e1.printStackTrace();
 					}
+					f2.setVisible(false);
 
 				}
 				if (e.getKeyCode() == KeyEvent.VK_E) {
@@ -289,7 +286,7 @@ public class MainApp extends JFrame {
 
 	/**
 	 * ensures that the starting menu appears when the game is opened, and that the
-	 * game runs if 'S' is clicked
+	 * game runs if 'S' is clicked. Exits if 'E' is clicked
 	 * 
 	 * @param args
 	 */
@@ -351,6 +348,7 @@ public class MainApp extends JFrame {
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		
 
 	}
 }

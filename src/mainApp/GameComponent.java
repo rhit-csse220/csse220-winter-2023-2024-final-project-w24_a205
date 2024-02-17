@@ -148,7 +148,7 @@ public class GameComponent extends JComponent {
 		}
 
 	}
-
+ 
 	/**
 	 * ensures that the hero moves every tick, switches gravity when a power-up is
 	 * collected, and moves to the next level after hitting the right side of the
@@ -196,7 +196,7 @@ public class GameComponent extends JComponent {
 			this.box.x = this.getWidth() - box.getWidth();
 			if (level == 5) {
 				System.out.println("Bonus complete!");
-				this.main.endMenu(this.coinCount, this.lives);
+				this.main.endMenu(this.coinCount, this.lives, false);
 			}
 
 			System.out.println("end of level!!!");
@@ -212,7 +212,7 @@ public class GameComponent extends JComponent {
 					}
 				} else {
 					System.out.println("Game complete!");
-					this.main.endMenu(this.coinCount, this.lives);
+					this.main.endMenu(this.coinCount, this.lives, false);
 				}
 			} else {
 				this.main.endLevel();

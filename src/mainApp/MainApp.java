@@ -239,8 +239,7 @@ public class MainApp extends JFrame {
 
 			@Override
 			public void keyTyped(KeyEvent e) {
-				
-				
+					
 			}
 
 			@Override

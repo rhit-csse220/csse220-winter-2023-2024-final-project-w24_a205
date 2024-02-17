@@ -5,16 +5,29 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
-
+/**
+ * Class: FileReader
+ * 
+ * @author W24_A205 <br>
+ *         Purpose: Reads the level files and creates objects accordingly <br>
+ *         Restrictions: None
+ * 
+ */
 public class FileReader {
 	private ArrayList<Barriers> barriers = new ArrayList<>();
 	private ArrayList<Coin> coins = new ArrayList<>();
 	private ArrayList<GravityPowerUp> gravPowerUps = new ArrayList<>();
 	private ArrayList<Missiles> missiles = new ArrayList<>();
-	private ArrayList<Collidable> collidables = new ArrayList<>();
+	
 	
 	private String filename;
-
+	/**
+	 * ensures that appropriate level files are read and objects are created and assigned to ArrayLists
+	 * @param level
+	 * @param coinCount
+	 * @param lives
+	 * @throws InvalidLevelFormatException
+	 */
 	public void readFile(int level, int coinCount, int lives) throws InvalidLevelFormatException {
 
 		ArrayList<String> levels = new ArrayList<String>();

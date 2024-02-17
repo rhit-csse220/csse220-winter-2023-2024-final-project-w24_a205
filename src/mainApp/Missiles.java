@@ -8,6 +8,14 @@ import java.awt.geom.Rectangle2D;
 
 import javax.swing.ImageIcon;
 
+/**
+ * Class: Missiles
+ * 
+ * @author W24_A205 <br>
+ *         Purpose: Establishes and creates missile objects <br>
+ *         Restrictions: None
+ * 
+ */
 public class Missiles extends Collidable {
 
 	Image mis;
@@ -27,12 +35,24 @@ public class Missiles extends Collidable {
 		this.isTracking = isTracking;
 	}
 
+	/**
+	 * ensures that the missiles move and checks for when they hit the left side of
+	 * the screen
+	 * 
+	 * @return
+	 */
 	public boolean fly() {
 		this.x += this.xVelocity;
 		return this.x < 0;
 
 	}
 
+	/**
+	 * ensures that missiles are created in the right location and drawn in the
+	 * level
+	 * 
+	 * @param g2
+	 */
 	public void drawOn(Graphics2D g) {
 		mis = new ImageIcon("missile2.png").getImage();
 
@@ -40,6 +60,11 @@ public class Missiles extends Collidable {
 		g.setColor(Color.BLACK);
 	}
 
+	/**
+	 * ensures that missiles track the player if they are set to track
+	 * 
+	 * @param playerY
+	 */
 	public void playerY(double playerY) {
 		this.playerY = playerY;
 		if (isTracking == true) {
@@ -52,6 +77,13 @@ public class Missiles extends Collidable {
 
 		}
 	}
+
+	/**
+	 * ensures that the game recognizes whenever the hero collides with a missile
+	 * 
+	 * @param b
+	 * @return
+	 */
 
 	public boolean insideBox(Rectangle2D.Double b) {
 		return b.intersects(x, y, WIDTH, HEIGHT);

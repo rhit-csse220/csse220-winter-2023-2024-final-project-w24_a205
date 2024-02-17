@@ -3,10 +3,13 @@ package mainApp;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Polygon;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.math.*;
+
+import javax.swing.ImageIcon;
 
 /**
  * Class: Barriers
@@ -23,6 +26,8 @@ public class Barriers extends Collidable {
 	private int barrierX, barrierY;
 	private boolean isElectric;
 	private char rotation;
+	private Image barrier;
+	private Image electricBarrier;
 
 	public Barriers(int barrierX, int barrierY, boolean isElectric, char rotation) {
 
@@ -77,8 +82,13 @@ public class Barriers extends Collidable {
 			g2.draw(barR);
 			g2.fill(barR);
 
-		} else {
-			g2.fillRect(this.barrierX, this.barrierY, STANDARD_BAR_WIDTH, STANDARD_BAR_HEIGHT);
+		} else if(this.isElectric == true) {
+			electricBarrier = new ImageIcon("electric barrier.png").getImage();
+			g2.drawImage(electricBarrier, this.barrierX, this.barrierY, null);
+			
+		}else {
+			barrier = new ImageIcon("barrier.png").getImage();
+			g2.drawImage(barrier, this.barrierX, this.barrierY, null);
 		}
 	}
 }

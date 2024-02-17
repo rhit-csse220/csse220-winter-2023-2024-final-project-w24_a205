@@ -221,7 +221,10 @@ public class MainApp extends JFrame {
 	 * ensures that a unique menu is displayed asking if you want to play again or
 	 * quit
 	 */
-	public void endMenu() {
+	public void endMenu(int coins, int lives) {
+		
+		int finalCoinCount = coins;
+		int finalLivesLeft = lives;
 		timer.stop();
 		frame.setVisible(false);
 
@@ -229,12 +232,19 @@ public class MainApp extends JFrame {
 		f2.setSize(300, 300);
 		JButton playAgain = new JButton("Press 'S' To Play Again");
 		JButton gameExit = new JButton("Press 'E' To Exit");
+		JButton finalStats = new JButton("Lives Left: " + lives + ", Coins Collected: " + coins);
 		JPanel panel = new JPanel();
+		JPanel panelStats = new JPanel();
+		
 
 		panel.add(playAgain);
 		panel.add(gameExit);
+		panelStats.add(finalStats);
+		
+		f2.add(panelStats, BorderLayout.SOUTH); 
 
 		f2.add(panel, BorderLayout.CENTER);
+		
 
 		ImageIcon barry = new ImageIcon("barry.png");
 		f2.setIconImage(barry.getImage());

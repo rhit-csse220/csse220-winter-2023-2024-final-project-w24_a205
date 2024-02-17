@@ -196,7 +196,7 @@ public class GameComponent extends JComponent {
 			this.box.x = this.getWidth() - box.getWidth();
 			if (level == 5) {
 				System.out.println("Bonus complete!");
-				this.main.endMenu();
+				this.main.endMenu(this.coinCount, this.lives);
 			}
 
 			System.out.println("end of level!!!");
@@ -212,7 +212,7 @@ public class GameComponent extends JComponent {
 					}
 				} else {
 					System.out.println("Game complete!");
-					this.main.endMenu();
+					this.main.endMenu(this.coinCount, this.lives);
 				}
 			} else {
 				this.main.endLevel();
@@ -346,6 +346,9 @@ public class GameComponent extends JComponent {
 		g2.drawImage(wall, 0, 0, null);
 		g2.drawImage(wall, 775, 0, null);
 
+		g2.drawImage(floor, 0, this.getHeight()-20, null);
+		g2.drawImage(floor, 775, this.getHeight()-20, null);
+		
 		g2.drawImage(floor, 0, 0, null);
 		g2.drawImage(floor, 775, 0, null);
 

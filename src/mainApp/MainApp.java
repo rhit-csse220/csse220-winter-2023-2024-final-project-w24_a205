@@ -321,7 +321,6 @@ public class MainApp extends JFrame {
 
 		});
 
-		
 		ImageIcon barry = new ImageIcon("barry.png");
 		frame.setIconImage(barry.getImage());
 		
